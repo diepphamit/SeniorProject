@@ -25,3 +25,13 @@ C:\Users\DAVID-DIEP\source\repos\SeniorProject\OcelotApigateway\bin\Debug\netcor
 C:\Users\DAVID-DIEP\source\repos\SeniorProject\OcelotApigateway\obj\Debug\netcoreapp3.1\OcelotApigateway.csproj.CopyComplete
 C:\Users\DAVID-DIEP\source\repos\SeniorProject\OcelotApigateway\obj\Debug\netcoreapp3.1\OcelotApigateway.dll
 C:\Users\DAVID-DIEP\source\repos\SeniorProject\OcelotApigateway\obj\Debug\netcoreapp3.1\OcelotApigateway.pdb
+C:\Users\DAVID-DIEP\source\repos\SeniorProject\OcelotApigateway\bin\Debug\netcoreapp3.1\configuration.json
+C:\Users\DAVID-DIEP\source\repos\SeniorProject\OcelotApigateway\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\DAVID-DIEP\source\repos\SeniorProject\OcelotApigateway\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.JsonWebTokens.dll
+C:\Users\DAVID-DIEP\source\repos\SeniorProject\OcelotApigateway\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Logging.dll
+C:\Users\DAVID-DIEP\source\repos\SeniorProject\OcelotApigateway\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Protocols.dll
+C:\Users\DAVID-DIEP\source\repos\SeniorProject\OcelotApigateway\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+C:\Users\DAVID-DIEP\source\repos\SeniorProject\OcelotApigateway\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Tokens.dll
+C:\Users\DAVID-DIEP\source\repos\SeniorProject\OcelotApigateway\bin\Debug\netcoreapp3.1\System.IdentityModel.Tokens.Jwt.dll
+C:\Users\DAVID-DIEP\source\repos\SeniorProject\OcelotApigateway\obj\Debug\netcoreapp3.1\OcelotApigateway.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\DAVID-DIEP\source\repos\SeniorProject\OcelotApigateway\obj\Debug\netcoreapp3.1\OcelotApigateway.MvcApplicationPartsAssemblyInfo.cache
