@@ -3,6 +3,7 @@ using DataAccess.Entities;
 using MainMicroservice.Dtos.Flashcards;
 using MainMicroservice.Dtos.Pronunciations;
 using MainMicroservice.Dtos.Topic;
+using MainMicroservice.Dtos.UserFlashcards;
 using MainMicroservice.Dtos.Users;
 using System;
 using System.Collections.Generic;
@@ -30,6 +31,10 @@ namespace MainMicroservice.AutoMapper
             CreateMap<Flashcard, FlashcardForReturn>();
             CreateMap<FlashcardForCreate, Flashcard>();
             CreateMap<FlashcardForUpdate, Flashcard>();
+
+            CreateMap<UserFlashcard, UserFlashcardForReturn>();
+            CreateMap<UserFlashcardForCreate, UserFlashcard>();
+            CreateMap<UserFlashcardForUpdate, UserFlashcard>();
         }
     }
 }

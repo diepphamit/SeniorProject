@@ -1,0 +1,26 @@
+<div class="box box-primary">
+
+    <div class="box-header with-border">
+      <h3 class="box-title">Thêm mới</h3>
+    </div>
+
+    <form [formGroup]="createTopicForm" (submit)="addTopic()" novalidate>
+      <div class="box-body">
+        <div class="row">
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label>Topic</label>
+              <input type="text" class="form-control" formControlName="name" placeholder="Name"
+                [ngClass]="{ 'is-invalid': f.name.errors }">
+
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="box-footer text-center">
+        <button [routerLink]="['/topics']" class="btn btn-default">Hủy</button>
+        <button type="submit" [disabled]="createTopicForm.invalid" class="btn btn-success">Lưu</button>
+      </div>
+    </form>
+
+  </div>

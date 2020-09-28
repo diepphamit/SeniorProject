@@ -74,6 +74,7 @@ namespace MainMicroservice
             services.AddScoped<ITopicRepository, TopicRepository>();
             services.AddScoped<IFlashcardRepository, FlashcardRepository>();
             services.AddScoped<IPronunciationRepository, PronunciationRepository>();
+            services.AddScoped<IUserFlashcardRepository, UserFlashcardRepository>();
             services.AddControllers();
 
             services.AddSwaggerGen(c =>

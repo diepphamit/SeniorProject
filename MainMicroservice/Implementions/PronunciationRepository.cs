@@ -65,7 +65,7 @@ namespace MainMicroservice.Implementions
 
         public async Task<Pronunciation> GetPronunciationByIdAsync(int id)
         {
-            return await _context.Pronunciations.Include(x => x.Flashcard).FirstOrDefaultAsync(x => x.Id == id);
+            return await _context.Pronunciations.FirstOrDefaultAsync(x => x.Id == id);
         }
 
         public async Task<bool> UpdatePronunciationAsync(int id, PronunciationForUpdate pronunciationForUpdate)
