@@ -1,0 +1,29 @@
+<html>
+
+<head>
+  <title>Facebook Chat Design</title>
+</head>
+
+<body>
+  <div class="wrapper">
+    <div class="chat-box">
+      <div class="chat-head">
+        <h2>Chat Box</h2>
+        <img src="https://maxcdn.icons8.com/windows10/PNG/16/Arrows/angle_down-16.png" title="Expand Arrow" width="16">
+      </div>
+      <div class="chat-body">
+        <div class="msg-insert" *ngFor="let item of arr">
+          <div class="msg-send" *ngIf="item.key"> {{item.value}} </div>
+          <div class="msg-receive" *ngIf="!item.key"> {{item.value}} </div>
+        </div>
+        <div class="chat-text">
+          <input type="text" placeholder="Send" [(ngModel)] = "str" (keypress)="onKeypressEvent($event)"/>
+          <button class="btn btn-success"><span class="glyphicon glyphicon-envelope"></span></button>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+
+</html>

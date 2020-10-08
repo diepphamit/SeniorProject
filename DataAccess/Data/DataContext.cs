@@ -25,6 +25,8 @@ namespace DataAccess.Data
         public DbSet<Pronunciation> Pronunciations { get; set; }
         public DbSet<Topic> Topics { get; set; }
         public DbSet<UserFlashcard> UserFlashcards { get; set; }
+        public DbSet<Test> Tests { get; set; }
+        public DbSet<TestDetail> TestDetails { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder builder)

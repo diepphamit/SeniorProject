@@ -123,6 +123,73 @@ namespace DataAccess.Migrations
                     b.ToTable("AspNetRoles");
                 });
 
+            modelBuilder.Entity("DataAccess.Entities.Test", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("CreateAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("Score")
+                        .HasColumnType("int");
+
+                    b.Property<int>("TotalCorrect")
+                        .HasColumnType("int");
+
+                    b.Property<int>("TotalSentences")
+                        .HasColumnType("int");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Tests");
+                });
+
+            modelBuilder.Entity("DataAccess.Entities.TestDetail", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("Answer1")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Answer2")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Answer3")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Answer4")
+                        .HasColumnType("int");
+
+                    b.Property<int>("FlashcardId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("MyAnswer")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("Status")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("TestId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("TestId");
+
+                    b.ToTable("TestDetails");
+                });
+
             modelBuilder.Entity("DataAccess.Entities.Topic", b =>
                 {
                     b.Property<int>("Id")
@@ -363,6 +430,24 @@ namespace DataAccess.Migrations
                     b.HasOne("DataAccess.Entities.Flashcard", "Flashcard")
                         .WithMany("Pronunciations")
                         .HasForeignKey("FlashcardId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("DataAccess.Entities.Test", b =>
+                {
+                    b.HasOne("DataAccess.Entities.User", "User")
+                        .WithMany("Tests")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("DataAccess.Entities.TestDetail", b =>
+                {
+                    b.HasOne("DataAccess.Entities.Test", "Test")
+                        .WithMany("TestDetails")
+                        .HasForeignKey("TestId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

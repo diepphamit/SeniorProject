@@ -19,6 +19,8 @@ import { UserService } from './services/user.service';
 import { TopicService } from './services/topic.service';
 import { PronunciationService } from './services/pronunciation.service';
 import { FlashcardService } from './services/flashcard.service';
+import { AuthGuard } from './services/auth-guard.service';
+import { ImageService } from './services/image.service';
 
 export function tokenGetter() {
   return localStorage.getItem(ACCESS_TOKEN);
@@ -57,11 +59,13 @@ export function tokenGetter() {
     ModalModule.forRoot()
   ],
   providers: [
+    AuthGuard,
     AuthService,
     UserService,
     TopicService,
     PronunciationService,
-    FlashcardService
+    FlashcardService,
+    ImageService
   ],
   bootstrap: [AppComponent]
 })

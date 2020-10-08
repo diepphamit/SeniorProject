@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { BlankComponent } from './layouts/blank/blank.component';
 import { FullComponent } from './layouts/full/full.component';
+import { AuthGuard } from './services/auth-guard.service';
 // import { AuthGuard } from './services/auth-guard.service';
 
 const routes: Routes = [
@@ -22,8 +23,18 @@ const routes: Routes = [
   },
   {
     path: '',
+    component: BlankComponent,
+    children: [
+      {
+        path: 'test',
+        loadChildren: () => import('./pages/home/home.module').then(m => m.HomeModule)
+      }
+    ]
+  },
+  {
+    path: '',
     component: FullComponent,
-    // canActivateChild: [AuthGuard],
+    //canActivateChild: [AuthGuard],
     children: [
       {
         path: 'home',
@@ -41,14 +52,14 @@ const routes: Routes = [
         path: 'pronunciations',
         loadChildren: () => import('./pages/pronunciation/pronunciation.module').then(m => m.PronunciationModule)
       },
-      // {
-      //   path: 'orderproducts',
-      //   loadChildren: () => import('./pages/order-product/order-product.module').then(m => m.OrderProductModule)
-      // },
-      // {
-      //   path: 'charts',
-      //   loadChildren: () => import('./pages/chartdemo/chartdemo.module').then(m => m.ChartdemoModule)
-      // },
+      {
+        path: 'flashcards',
+        loadChildren: () => import('./pages/flashcard/flashcard.module').then(m => m.FlashcardModule)
+      },
+      {
+        path: 'images',
+        loadChildren: () => import('./pages/image/image.module').then(m => m.ImageModule)
+      },
       // {
       //   path: 'pictures',
       //   loadChildren: () => import('./pages/picture/picture.module').then(m => m.PictureModule)

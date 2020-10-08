@@ -149,5 +149,6 @@ C:\Users\DAVID-DIEP\source\repos\SeniorProject\MainMicroservice\bin\Debug\netcor
 C:\Users\DAVID-DIEP\source\repos\SeniorProject\MainMicroservice\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.Swagger.dll
 C:\Users\DAVID-DIEP\source\repos\SeniorProject\MainMicroservice\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.SwaggerGen.dll
 C:\Users\DAVID-DIEP\source\repos\SeniorProject\MainMicroservice\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.SwaggerUI.dll
+C:\Users\DAVID-DIEP\source\repos\SeniorProject\MainMicroservice\bin\Debug\netcoreapp3.1\CloudinaryDotNet.dll
 C:\Users\DAVID-DIEP\source\repos\SeniorProject\MainMicroservice\obj\Debug\netcoreapp3.1\MainMicroservice.MvcApplicationPartsAssemblyInfo.cs
 C:\Users\DAVID-DIEP\source\repos\SeniorProject\MainMicroservice\obj\Debug\netcoreapp3.1\MainMicroservice.MvcApplicationPartsAssemblyInfo.cache

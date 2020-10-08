@@ -17,6 +17,7 @@ namespace DataAccess.Entities
 
         public ICollection<UserRole> UserRoles { get; set; }
         public virtual ICollection<UserFlashcard> UserFlashcards { get; set; }
+        public virtual ICollection<Test> Tests { get; set; }
 
     }
 }

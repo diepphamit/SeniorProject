@@ -9,10 +9,11 @@
         <div class="row">
           <div class="col-sm-6">
             <div class="form-group">
-              <label>FlashcardID</label>
-              <input type="number" class="form-control" formControlName="flashcardId" placeholder="FlashcardID"
-                [ngClass]="{ 'is-invalid': f.flashcardId.errors }">
-            </div>
+            <label>Thêm Flashcard </label>
+            <select class="form-control" formControlName="flashcardId" [ngClass]="{ 'is-invalid': f.flashcardId.errors }" placeholder="asdsd">
+              <option *ngFor=" let flashcard of flashcards | async" value={{flashcard.id}}> {{ flashcard.word}}</option>
+            </select>
+          </div>
             <div class="form-group">
               <label>Phonetic</label>
               <input type="text" class="form-control" formControlName="phonetic" placeholder="Phonetic"
@@ -28,7 +29,7 @@
         </div>
       </div>
       <div class="box-footer text-center">
-        <button [routerLink]="['/topics']" class="btn btn-default">Hủy</button>
+        <button [routerLink]="['/pronunciations']" class="btn btn-default">Hủy</button>
         <button type="submit" [disabled]="createPronunciationForm.invalid" class="btn btn-success">Lưu</button>
       </div>
     </form>

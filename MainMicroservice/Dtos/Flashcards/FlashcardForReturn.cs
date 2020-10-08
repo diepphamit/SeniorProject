@@ -1,4 +1,5 @@
 ﻿using DataAccess.Entities;
+using MainMicroservice.Dtos.Images;
 using MainMicroservice.Dtos.Pronunciations;
 using MainMicroservice.Dtos.UserFlashcards;
 using System;
@@ -17,8 +18,9 @@ namespace MainMicroservice.Dtos.Flashcards
         public string Example { get; set; }
         public bool IsSystem { get; set; }
         public int TopicId { get; set; }
+        public string TopicName { get; set; }
         //public Topic Topic { get; set; }
-        //public ICollection<Image> Images { get; set; }
+        public ICollection<ImageForReturn> Images { get; set; }
         public ICollection<PronunciationForReturn> Pronunciations { get; set; }
         public ICollection<UserFlashcardForReturn> UserFlashcards { get; set; }
     }

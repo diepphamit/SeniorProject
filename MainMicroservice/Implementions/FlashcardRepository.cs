@@ -76,6 +76,7 @@ namespace MainMicroservice.Implementions
                     .Include(x => x.Pronunciations)
                     .Include(x => x.Images)
                     .Include(x => x.UserFlashcards)
+                    .Include(x => x.Topic)
                     .AsEnumerable();
         }
 

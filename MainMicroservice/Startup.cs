@@ -6,6 +6,7 @@ using AutoMapper;
 using DataAccess.Data;
 using DataAccess.Entities;
 using MainMicroservice.AutoMapper;
+using MainMicroservice.Helpers;
 using MainMicroservice.Implementions;
 using MainMicroservice.Interfaces;
 using Microsoft.AspNetCore.Builder;
@@ -68,6 +69,7 @@ namespace MainMicroservice
             //Add automapper
             services.AddAutoMapper(typeof(AutoMapperProfiles), typeof(AutoMapperProfiles));
 
+            services.Configure<CloudinarySettings>(Configuration.GetSection("CloudinarySettings"));
             //Add all repositories
 
             services.AddScoped<IUserRepository, UserRepository>();
@@ -75,6 +77,10 @@ namespace MainMicroservice
             services.AddScoped<IFlashcardRepository, FlashcardRepository>();
             services.AddScoped<IPronunciationRepository, PronunciationRepository>();
             services.AddScoped<IUserFlashcardRepository, UserFlashcardRepository>();
+            services.AddScoped<IImageRepository, ImageRepository>();
+            services.AddScoped<ITestRepository, TestRepository>();
+            services.AddScoped<ITestDetailRepository, TestDetailRepository>();
+
             services.AddControllers();
 
             services.AddSwaggerGen(c =>

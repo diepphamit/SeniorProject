@@ -69,6 +69,7 @@ namespace MainMicroservice.Implementions
                 return topics;
             }
 
+            var s = _context.Tests.AsEnumerable().Count();
             return _context.Topics.AsEnumerable();
         }
 

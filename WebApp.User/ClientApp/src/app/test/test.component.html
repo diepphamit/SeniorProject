@@ -1,0 +1,13 @@
+<form (submit)="addTest()">
+  <ul *ngFor="let item of dataTest">
+    <p>What is mean of {{item.flashcardId}}</p>
+    <li [style.color] = "getColor(item.myAnswer, item.flashcardId, item.answer1, count)"><input type = "radio" name="{{item.flashcardId}}" (click) = "addMyAnswer(item.flashcardId, item.answer1)" />{{item.answer1}}</li>
+    <li [style.color] = "getColor(item.myAnswer, item.flashcardId, item.answer2, count)"><input type = "radio" name="{{item.flashcardId}}" (click) = "addMyAnswer(item.flashcardId, item.answer2)"/>{{item.answer2}}</li>
+    <li [style.color] = "getColor(item.myAnswer, item.flashcardId, item.answer3, count)"><input type = "radio" name="{{item.flashcardId}}" (click) = "addMyAnswer(item.flashcardId, item.answer3)"/>{{item.answer3}}</li>
+    <li [style.color] = "getColor(item.myAnswer, item.flashcardId, item.answer4, count)"><input type = "radio" name="{{item.flashcardId}}" (click) = "addMyAnswer(item.flashcardId, item.answer4)"/>{{item.answer4}}</li>
+    <p>Answer: {{item.flashcardId}}</p>
+  </ul>
+  <p *ngIf="score != -1">{{score}}</p>
+  <input type="submit" value="Submit" />
+</form>
+

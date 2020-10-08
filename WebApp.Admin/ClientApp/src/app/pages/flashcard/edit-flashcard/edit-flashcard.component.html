@@ -1,0 +1,50 @@
+<div class="box box-primary">
+
+  <div class="box-header with-border">
+    <h3 class="box-title">Cập nhật</h3>
+  </div>
+
+  <form [formGroup]="editFlashcardForm" (submit)="editFlashcard()" novalidate>
+    <div class="box-body">
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="form-group">
+            <label>Word</label>
+            <input type="text" class="form-control" formControlName="word" placeholder="Word"
+              [ngClass]="{ 'is-invalid': f.word.errors }">
+
+          </div>
+          <div class="form-group">
+            <label>Meaning</label>
+            <input type="text" class="form-control" formControlName="meaning" placeholder="Meaning"
+              [ngClass]="{ 'is-invalid': f.meaning.errors }">
+          </div>
+          <div class="form-group">
+            <label>Type</label>
+            <input type="text" class="form-control" formControlName="type" placeholder="Type"
+              [ngClass]="{ 'is-invalid': f.type.errors }">
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="form-group">
+            <label>Example</label>
+            <input type="text" class="form-control" formControlName="example" placeholder="Exampe"
+              [ngClass]="{ 'is-invalid': f.example.errors }">
+          </div>
+          <div class="form-group">
+            <label>Them topic </label>
+            <select class="form-control" formControlName="topicId"
+              [ngClass]="{ 'is-invalid': f.topicId.errors }">
+              <option *ngFor=" let topic of topics | async" value={{topic.id}}> {{ topic.name}}</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="box-footer text-center">
+      <button [routerLink]="['/flashcards']" class="btn btn-default">Hủy</button>
+      <button type="submit" [disabled]="editFlashcardForm.invalid" class="btn btn-success">Lưu</button>
+    </div>
+  </form>
+
+</div>
