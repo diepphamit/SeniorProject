@@ -5,22 +5,26 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
-import { NavMenuComponent } from './nav-menu/nav-menu.component';
-import { HomeComponent } from './home/home.component';
-import { CounterComponent } from './counter/counter.component';
-import { FetchDataComponent } from './fetch-data/fetch-data.component';
-import { PopupComponent } from './popup/popup.component';
 import { ChatbotService } from './services/chatbot.service';
 import { TestComponent } from './test/test.component';
 import { TestService } from './services/test.service';
+import { CoreModule } from './core/core.module';
+import { FullComponent } from './layouts/full/full.component';
+import { AppRoutingModule } from './app-routing.module';
+import { PopupComponent } from './helpers/popup/popup.component';
+import { AuthService } from './services/auth.service';
+import { ACCESS_TOKEN } from './constants/db-keys';
+import { JwtModule } from '@auth0/angular-jwt';
+import { ValidationService } from './services/validation.service';
+
+export function tokenGetter() {
+  return localStorage.getItem(ACCESS_TOKEN);
+}
 
 @NgModule({
   declarations: [
     AppComponent,
-    NavMenuComponent,
-    HomeComponent,
-    CounterComponent,
-    FetchDataComponent,
+    FullComponent,
     PopupComponent,
     TestComponent
   ],
@@ -28,18 +32,30 @@ import { TestService } from './services/test.service';
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     HttpClientModule,
     FormsModule,
+    CoreModule,
+    AppRoutingModule,
     ReactiveFormsModule,
-    RouterModule.forRoot([
-      { path: '', component: HomeComponent, pathMatch: 'full' },
-      { path: 'counter', component: CounterComponent },
-      { path: 'fetch-data', component: FetchDataComponent },
-       { path: 'test', component: TestComponent },
-    ])
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: tokenGetter,
+          // whitelistedDomains: [
+          //   'localhost:5000',
+          //   'localhost:44327',
+          //   '52.77.233.77:8081'
+          // ],
+          // blacklistedRoutes: [
+          //   'localhost:5000/api/auth/login',
+          //   'localhost:44327/api/auth/login'
+          // ]
+      }
+    }),
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [
     ChatbotService,
-    TestService
+    TestService,
+    AuthService,
+    ValidationService
   ],
   bootstrap: [AppComponent]
 })

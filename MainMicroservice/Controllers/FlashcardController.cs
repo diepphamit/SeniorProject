@@ -1,6 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Net.Http;
+using System.Net.Http.Headers;
+using System.Text;
 using System.Threading.Tasks;
 using AutoMapper;
 using DataAccess.Entities;
@@ -9,6 +13,8 @@ using MainMicroservice.Helpers;
 using MainMicroservice.Interfaces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace MainMicroservice.Controllers
 {
@@ -67,12 +73,67 @@ namespace MainMicroservice.Controllers
             return Ok(flashcard);
         }
 
-        [HttpPost]
+        [HttpPost("CreateFlashcard")]
         public async Task<IActionResult> CreateFlashcard([FromBody] FlashcardForCreate input)
         {
             if (ModelState.IsValid)
             {
                 var result = await _flashcardRepository.CreateFlashcardAsync(input);
+                if (result)
+                {
+                    return Ok(new
+                    {
+                        message = "success",
+                        StatusCode = 201
+                    });
+                }
+
+                return BadRequest(new
+                {
+                    message = "fail"
+                });
+            }
+
+            return BadRequest(ModelState);
+        }
+
+        [HttpPost("CreateFlashcardAI")]
+        public async Task<IActionResult> CreateFlashcardAI([FromForm] ImageFlashcardForCreate file) 
+        {
+            if (ModelState.IsValid)
+            {
+
+                var content = new MultipartFormDataContent();
+                
+                content.Add(new StreamContent(HttpContext.Request.Form.Files[0].OpenReadStream())
+                {
+                    Headers =
+                {
+                    ContentLength = HttpContext.Request.Form.Files[0].Length
+                }
+                }, "File", "FILES");
+
+                HttpClient client = new HttpClient();
+                HttpResponseMessage response = await client.PostAsync("http://localhost:8000/image", content);
+                response.EnsureSuccessStatusCode();
+                var responseBody = await response.Content.ReadAsStringAsync();
+
+                var dataReturn = JObject.Parse(responseBody);
+                string z = dataReturn["data"][0].ToString();
+
+
+                FlashcardForCreateAI flashcard = new FlashcardForCreateAI
+                {
+                    Word = dataReturn["data"][0].ToString(),
+                    Meaning = dataReturn["data"][1].ToString(),
+                    Type = dataReturn["data"][2].ToString(),
+                    Example = dataReturn["data"][3].ToString(),
+                    Phonetic = dataReturn["data"][4].ToString(),
+                    PronunciationLink = dataReturn["data"][5].ToString(),
+                    File = file.Image
+                };
+
+                var result = await _flashcardRepository.CreateFlashcardAIAsync(flashcard);
                 if (result)
                 {
                     return Ok(new

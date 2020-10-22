@@ -1,0 +1,31 @@
+
+<div class="wrapper fadeInDown">
+  <div id="formContent">
+    <!-- Tabs Titles -->
+
+    <!-- Icon -->
+    <div class="fadeIn first">
+      <img src="./../../../assets/img/users-svgrepo-com.svg" id="icon" alt="User Icon" />
+    </div>
+
+    <!-- Login Form -->
+    <form [formGroup]="registerForm" (submit)="register()" novalidate>
+      <input formControlName="username" type="text" [ngClass]="{ 'is-invalid': f.username.errors }" id="login" class="fadeIn second" name="login" placeholder="Username">
+
+      <input type="text" formControlName="email" id="login" [ngClass]="{ 'is-invalid': f.email.errors }" class="fadeIn second" name="login" placeholder="Email">
+      <app-control-messages [control]="registerForm.get('email')"></app-control-messages>
+
+      <input type="text" formControlName="password" id="login" [ngClass]="{ 'is-invalid': f.password.errors }" class="fadeIn second" name="login" placeholder="Password">
+      <app-control-messages [control]="registerForm.get('password')"></app-control-messages>
+
+      <input type="text" formControlName="confirmPassword" id="password" [ngClass]="{ 'is-invalid': f.confirmPassword.errors }" class="fadeIn third" name="login" placeholder="Confirm Password">
+      <app-control-messages [control]="registerForm.get('confirmPassword')"></app-control-messages>
+
+      <input *ngIf="registerForm.invalid"  type="Submit" style="background-color: aliceblue; color: black;"  [disabled]="true" class="fadeIn fourth" value="Sign up">
+      <input type="Submit" *ngIf="!registerForm.invalid"  class="fadeIn fourth" value="Sign up">
+      <p *ngIf="!isSuccess" style="color: red; font-size: 15px;">This account was existed. Please try again</p>
+    </form>
+
+
+  </div>
+</div>

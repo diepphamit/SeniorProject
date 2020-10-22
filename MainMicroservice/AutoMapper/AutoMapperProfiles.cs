@@ -33,6 +33,7 @@ namespace MainMicroservice.AutoMapper
 
             CreateMap<Flashcard, FlashcardForReturn>().ForMember(x => x.TopicName, y => { y.MapFrom(z => z.Topic.Name); }); ;
             CreateMap<FlashcardForCreate, Flashcard>();
+            CreateMap<FlashcardForCreateAI, Flashcard>();
             CreateMap<FlashcardForUpdate, Flashcard>();
 
             CreateMap<UserFlashcard, UserFlashcardForReturn>();
