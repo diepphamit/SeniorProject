@@ -57,6 +57,33 @@ namespace MainMicroservice.Controllers
             }
         }
 
+        [HttpGet("GetPopularTopics")]
+        public IActionResult GetPopularTopics(string keyword, int page = 1, int pageSize = 10)
+        {
+            try
+            {
+
+                var topics = _topicRepository.GetPopularTopics();
+
+                int totalCount = topics.Count();
+
+                var query = topics.OrderByDescending(x => x.Id).Skip((page - 1) * pageSize).Take(pageSize);
+                var response = _mapper.Map<IEnumerable<Topic>, IEnumerable<TopicForReturn>>(query);
+
+                var paginationSet = new PaginationSet<TopicForReturn>()
+                {
+                    Items = response.ToList(),
+                    Total = totalCount,
+                };
+
+                return Ok(paginationSet);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest();
+            }
+        }
+
         [HttpGet("{id}")]
         public async Task<IActionResult> GetTopicById(int id)
         {

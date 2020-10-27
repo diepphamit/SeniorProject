@@ -12,7 +12,7 @@
         </div>
         <div class="chat-text">
           <input type="text" placeholder="Send" [(ngModel)] = "str" (keypress)="onKeypressEvent($event)"/>
-          <button class="btn btn-success">Send</button>
+          <button class ="btn btn-success btn-lg" (click) = "send()" style="font-size: 25px; width: 50px;" ><img style="height: 35px; width: 35px;" src="./../../../assets//img//slider/send.png" title="Expand Arrow" width="16"></button>
         </div>
       </div>
     </div>

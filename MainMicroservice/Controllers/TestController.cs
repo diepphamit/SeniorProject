@@ -111,21 +111,21 @@ namespace MainMicroservice.Controllers
    
                 if (result != null)
                 {
-                    TestAndTestDetailForReturn testForReturn = new TestAndTestDetailForReturn
-                    {
-                        Id = result.Id,
-                        TotalSentences = result.TotalSentences,
-                        TotalCorrect = result.TotalCorrect,
-                        CreateAt = result.CreateAt,
-                        Score = result.Score,
-                        UserId = result.UserId,
-                        TestDetails = _mapper.Map<ICollection<TestDetail>, ICollection<TestDetailAndTestForReturn>>(result.TestDetails)
-                    };
+                    //TestAndTestDetailForReturn testForReturn = new TestAndTestDetailForReturn
+                    //{
+                    //    Id = result.Id,
+                    //    TotalSentences = result.TotalSentences,
+                    //    TotalCorrect = result.TotalCorrect,
+                    //    CreateAt = result.CreateAt,
+                    //    Score = result.Score,
+                    //    UserId = result.UserId,
+                    //    TestDetails = _mapper.Map<ICollection<TestDetail>, ICollection<TestDetailAndTestForReturn>>(result.TestDetails)
+                    //};
 
                     return Ok(new {
                         message = "success",
                         statusCode = 201,
-                        data = testForReturn
+                        data = result
                     });
                 }
 

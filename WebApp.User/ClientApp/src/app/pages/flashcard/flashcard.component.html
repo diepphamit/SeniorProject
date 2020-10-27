@@ -1,0 +1,63 @@
+<!-- Page breadcrumb -->
+<section id="mu-page-breadcrumb">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="mu-page-breadcrumb-area">
+          <h2>Topic</h2>
+          <ol class="breadcrumb">
+            <li class="active">All Topic</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End breadcrumb -->
+<section id="mu-course-content">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="mu-course-content-area">
+          <div class="row">
+            <div class="col-md-12">
+              <!-- start course content container -->
+              <div class="mu-course-container">
+                <div class="row">
+                  <div class="col-lg-3 col-md-3  col-sm-6"
+                    *ngFor="let item of flashcardsAsync | async | paginate: { itemsPerPage: pageSize, currentPage: page, totalItems: total }">
+
+
+                    <div class="mu-our-teacher-single">
+                      <figure class="mu-our-teacher-img">
+                        <img src="assets/img/teachers/teacher-01.png" alt="teacher img">
+                        <div class="mu-our-teacher-social">
+                          <a href="#"><span class="fa fa-facebook"></span></a>
+                          <a href="#"><span class="fa fa-twitter"></span></a>
+                          <a href="#"><span class="fa fa-linkedin"></span></a>
+                          <a href="#"><span class="fa fa-google-plus"></span></a>
+                        </div>
+                      </figure>
+                      <div class="mu-ourteacher-single-content">
+                        <h4>Brian Dean</h4>
+                        <span>Math Teacher</span>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique quod pariatur recusandae odio
+                          dignissimos. Eligendi.</p>
+                      </div>
+                    </div>
+                    </div>
+
+                </div>
+                <div class="text-center">
+                  <pagination-controls class="custom-pagination" (pageChange)="getFlashcardsByTopicId($event)"
+                    autoHide="true" responsive="true" previousLabel="Trước" nextLabel="Sau" directionLinks="true">
+                  </pagination-controls>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

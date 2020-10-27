@@ -10,6 +10,7 @@ namespace MainMicroservice.Interfaces
     public interface ITopicRepository
     {
         IEnumerable<Topic> GetAllTopics(string keyword);
+        IEnumerable<Topic> GetPopularTopics();
         Task<Topic> GetTopicByIdAsync(int id);
         Task<bool> CreateTopicAsync(TopicForCreate topicForCreate);
 

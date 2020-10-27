@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 
 @Injectable()
 export class PronunciationService {
-  baseUrl = 'https://localhost:5001/api/' + 'pronunciation';
+  baseUrl = 'https://localhost:44386/api/' + 'pronunciation';
 
   constructor(private http: HttpClient) {
   }

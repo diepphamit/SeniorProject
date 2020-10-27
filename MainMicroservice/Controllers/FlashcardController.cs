@@ -63,6 +63,35 @@ namespace MainMicroservice.Controllers
             }
         }
 
+        [HttpGet("GetFlashcardsByTopicId")]
+        public IActionResult GetFlashcardsByTopicId(int topicId, int page = 1, int pageSize = 10)
+        {
+            try
+            {
+                //var currentFlashcard = HttpContext.Flashcard.Identity.Name;
+                //var list = _flashcardRepository.GetListFlashcardsRole(keyword);
+                //list = list.Where(x => x.FlashcardName != currentFlashcard);
+                var flashcards = _flashcardRepository.GetAllFlashcardsByTopicId(topicId);
+
+                int totalCount = flashcards.Count();
+
+                var query = flashcards.OrderByDescending(x => x.Id).Skip((page - 1) * pageSize).Take(pageSize);
+                var response = _mapper.Map<IEnumerable<Flashcard>, IEnumerable<FlashcardForReturn>>(query);
+
+                var paginationSet = new PaginationSet<FlashcardForReturn>()
+                {
+                    Items = response.ToList(),
+                    Total = totalCount,
+                };
+
+                return Ok(paginationSet);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest();
+            }
+        }
+
         [HttpGet("{id}")]
         public async Task<IActionResult> GetFlashcardById(int id)
         {

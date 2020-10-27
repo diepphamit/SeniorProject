@@ -94,12 +94,18 @@ namespace MainMicroservice.Implementions
                 TestDetailAndTestForCreate td = new TestDetailAndTestForCreate
                 {
                     Answer1 = listSuff[0].Id,
+                    Answer1Meaning = listSuff[0].Meaning,
                     Answer2 = listSuff[1].Id,
+                    Answer2Meaning = listSuff[1].Meaning,
                     Answer3 = listSuff[2].Id,
+                    Answer3Meaning = listSuff[2].Meaning,
                     Answer4 = listSuff[3].Id,
+                    Answer4Meaning = listSuff[3].Meaning,
                     FlashcardId = item.FlashcardId,
                     MyAnswer = 0
                 };
+
+                td.Word = item.Flashcard.Word;
 
                 listReturn.Add(td);
 

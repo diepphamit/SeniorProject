@@ -41,6 +41,12 @@ export class HeaderComponent implements OnInit, DoCheck {
     this.isUser = false;
     this.router.navigate(['/home']).then(() => {
     });
-}
+  }
+
+  get getuserId() {
+    const user = JSON.parse(localStorage.getItem(CURRENT_USER));
+
+    return user.id;
+  }
 
 }

@@ -9,10 +9,15 @@ namespace MainMicroservice.Dtos.TestDetails
     {
         public int Id { get; set; }
         public int FlashcardId { get; set; }
+        public string Word { get; set; }
         public int MyAnswer { get; set; }
         public int Answer1 { get; set; }
+        public string Answer1Meaning { get; set; }
         public int Answer2 { get; set; }
+        public string Answer2Meaning { get; set; }
         public int Answer3 { get; set; }
+        public string Answer3Meaning { get; set; }
         public int Answer4 { get; set; }
+        public string Answer4Meaning { get; set; }
     }
 }

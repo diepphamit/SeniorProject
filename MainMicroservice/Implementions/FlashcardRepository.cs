@@ -155,6 +155,17 @@ namespace MainMicroservice.Implementions
                     .AsEnumerable();
         }
 
+        public IEnumerable<Flashcard> GetAllFlashcardsByTopicId(int topicId)
+        {
+            return _context.Flashcards
+                   .Include(x => x.Pronunciations)
+                   .Include(x => x.Images)
+                   .Include(x => x.UserFlashcards)
+                   .Include(x => x.Topic)
+                   .Where(x => x.TopicId == topicId)
+                   .AsEnumerable();
+        }
+
         public async Task<Flashcard> GetFlashcardByIdAsync(int id)
         {
             return await _context.Flashcards.FirstOrDefaultAsync(x => x.Id == id);

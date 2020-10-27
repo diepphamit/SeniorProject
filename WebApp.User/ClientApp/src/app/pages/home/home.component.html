@@ -1,4 +1,3 @@
-
 <!-- Start Slider -->
 <section id="mu-slider">
   <!-- Start single slider item -->
@@ -71,7 +70,9 @@
                   <h2>About Us</h2>
                 </div>
                 <!-- End Title -->
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rerum pariatur fuga eveniet soluta aspernatur rem, nam voluptatibus voluptate voluptates sapiente, inventore. Voluptatem, maiores esse molestiae.</p>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rerum pariatur fuga eveniet soluta
+                  aspernatur rem, nam voluptatibus voluptate voluptates sapiente, inventore. Voluptatem, maiores esse
+                  molestiae.</p>
                 <ul>
                   <li>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</li>
                   <li>Saepe a minima quod iste libero rerum dicta!</li>
@@ -79,14 +80,15 @@
                   <li>Ipsam deserunt numquam ad error rem unde, omnis.</li>
                   <li>Repellat assumenda adipisci pariatur ipsam eos similique, explicabo.</li>
                 </ul>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perspiciatis quaerat harum facilis excepturi et? Mollitia!</p>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perspiciatis quaerat harum facilis
+                  excepturi et? Mollitia!</p>
               </div>
             </div>
             <div class="col-lg-6 col-md-6">
               <div class="mu-about-us-right">
-              <a id="mu-abtus-video" href="https://www.youtube.com/embed/HN3pm9qYAUs" target="mutube-video">
-                <img src="assets/img/about-us.jpg" alt="img">
-              </a>
+                <a id="mu-abtus-video" href="https://www.youtube.com/embed/HN3pm9qYAUs" target="mutube-video">
+                  <img src="../../../assets/img/slider/about.jpg" alt="img">
+                </a>
               </div>
             </div>
           </div>
@@ -163,122 +165,18 @@
           <!-- End Title -->
           <!-- Start latest course content -->
           <div id="mu-latest-course-slide" class="mu-latest-courses-content">
-            <div class="col-lg-4 col-md-4 col-xs-12">
+            <div class="col-lg-4 col-md-4 col-xs-12" style="padding-bottom: 30px;"
+              *ngFor="let item of topicsAsync | async">
               <div class="mu-latest-course-single">
                 <figure class="mu-latest-course-img">
-                  <a href="#"><img src="assets/img/courses/1.jpg" alt="img"></a>
-                  <figcaption class="mu-latest-course-imgcaption">
-                    <a href="#">Drawing</a>
-                    <span><i class="fa fa-clock-o"></i>90Days</span>
-                  </figcaption>
+                  <a href="#"><img src="../../../assets//img//slider//test_topic.jpg" alt="img"></a>
                 </figure>
                 <div class="mu-latest-course-single-content">
-                  <h4><a href="#">Lorem ipsum dolor sit amet.</a></h4>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet quod nisi quisquam modi dolore,
-                    dicta obcaecati architecto quidem ullam quia.</p>
+                  <h3><a href="#">{{item.name}}</a></h3>
+                  <p>{{item.content}}</p>
                   <div class="mu-latest-course-single-contbottom">
                     <a class="mu-course-details" href="#">Details</a>
-                    <span class="mu-course-price" href="#">$165.00</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-lg-4 col-md-4 col-xs-12">
-              <div class="mu-latest-course-single">
-                <figure class="mu-latest-course-img">
-                  <a href="#"><img src="assets/img/courses/2.jpg" alt="img"></a>
-                  <figcaption class="mu-latest-course-imgcaption">
-                    <a href="#">Engineering </a>
-                    <span><i class="fa fa-clock-o"></i>75Days</span>
-                  </figcaption>
-                </figure>
-                <div class="mu-latest-course-single-content">
-                  <h4><a href="#">Lorem ipsum dolor sit amet.</a></h4>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet quod nisi quisquam modi dolore,
-                    dicta obcaecati architecto quidem ullam quia.</p>
-                  <div class="mu-latest-course-single-contbottom">
-                    <a class="mu-course-details" href="#">Details</a>
-                    <span class="mu-course-price" href="#">$165.00</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-lg-4 col-md-4 col-xs-12">
-              <div class="mu-latest-course-single">
-                <figure class="mu-latest-course-img">
-                  <a href="#"><img src="assets/img/courses/3.jpg" alt="img"></a>
-                  <figcaption class="mu-latest-course-imgcaption">
-                    <a href="#">Academic</a>
-                    <span><i class="fa fa-clock-o"></i>45Days</span>
-                  </figcaption>
-                </figure>
-                <div class="mu-latest-course-single-content">
-                  <h4><a href="#">Lorem ipsum dolor sit amet.</a></h4>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet quod nisi quisquam modi dolore,
-                    dicta obcaecati architecto quidem ullam quia.</p>
-                  <div class="mu-latest-course-single-contbottom">
-                    <a class="mu-course-details" href="#">Details</a>
-                    <span class="mu-course-price" href="#">$165.00</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-lg-4 col-md-4 col-xs-12">
-              <div class="mu-latest-course-single">
-                <figure class="mu-latest-course-img">
-                  <a href="#"><img src="assets/img/courses/1.jpg" alt="img"></a>
-                  <figcaption class="mu-latest-course-imgcaption">
-                    <a href="#">Drawing</a>
-                    <span><i class="fa fa-clock-o"></i>90Days</span>
-                  </figcaption>
-                </figure>
-                <div class="mu-latest-course-single-content">
-                  <h4><a href="#">Lorem ipsum dolor sit amet.</a></h4>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet quod nisi quisquam modi dolore,
-                    dicta obcaecati architecto quidem ullam quia.</p>
-                  <div class="mu-latest-course-single-contbottom">
-                    <a class="mu-course-details" href="#">Details</a>
-                    <span class="mu-course-price" href="#">$165.00</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-lg-4 col-md-4 col-xs-12">
-              <div class="mu-latest-course-single">
-                <figure class="mu-latest-course-img">
-                  <a href="#"><img src="assets/img/courses/2.jpg" alt="img"></a>
-                  <figcaption class="mu-latest-course-imgcaption">
-                    <a href="#">Engineering </a>
-                    <span><i class="fa fa-clock-o"></i>75Days</span>
-                  </figcaption>
-                </figure>
-                <div class="mu-latest-course-single-content">
-                  <h4><a href="#">Lorem ipsum dolor sit amet.</a></h4>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet quod nisi quisquam modi dolore,
-                    dicta obcaecati architecto quidem ullam quia.</p>
-                  <div class="mu-latest-course-single-contbottom">
-                    <a class="mu-course-details" href="#">Details</a>
-                    <span class="mu-course-price" href="#">$165.00</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-lg-4 col-md-4 col-xs-12">
-              <div class="mu-latest-course-single">
-                <figure class="mu-latest-course-img">
-                  <a href="#"><img src="assets/img/courses/3.jpg" alt="img"></a>
-                  <figcaption class="mu-latest-course-imgcaption">
-                    <a href="#">Academic</a>
-                    <span><i class="fa fa-clock-o"></i>45Days</span>
-                  </figcaption>
-                </figure>
-                <div class="mu-latest-course-single-content">
-                  <h4><a href="#">Lorem ipsum dolor sit amet.</a></h4>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet quod nisi quisquam modi dolore,
-                    dicta obcaecati architecto quidem ullam quia.</p>
-                  <div class="mu-latest-course-single-contbottom">
-                    <a class="mu-course-details" href="#">Details</a>
-                    <span class="mu-course-price" href="#">$165.00</span>
+                    <!-- <span class="mu-course-price" href="#">$165.00</span> -->
                   </div>
                 </div>
               </div>
@@ -312,18 +210,30 @@
                 <div class="mu-our-teacher-single">
                   <figure class="mu-our-teacher-img">
                     <img src="assets/img/teachers/teacher-01.png" alt="teacher img">
-                    <div class="mu-our-teacher-social">
+                    <!-- <div class="mu-our-teacher-social">
                       <a href="#"><span class="fa fa-facebook"></span></a>
                       <a href="#"><span class="fa fa-twitter"></span></a>
                       <a href="#"><span class="fa fa-linkedin"></span></a>
                       <a href="#"><span class="fa fa-google-plus"></span></a>
-                    </div>
+                    </div> -->
                   </figure>
                   <div class="mu-ourteacher-single-content">
-                    <h4>Brian Dean</h4>
+                    <div class="row">
+                      <div class="col-sm-9">
+                        <h4>Brian Dean</h4>
+                      </div>
+                      <div class="col-sm-3 ml-auto">
+                        <a style="cursor: pointer; "><img style="width: 30px;
+                          height: 30px;
+                          margin-top: 5px;" src="./../../../assets//img//slider//speaker1.svg" alt="teacher img">
+
+                        </a>
+                        <!-- <h4 style="text-align: right;">Loa</h4> -->
+                      </div>
+                    </div>
+                    <!-- <p style="text-align: right;">Bp</p> -->
                     <span>Math Teacher</span>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique quod pariatur recusandae odio
-                      dignissimos. Eligendi.</p>
+                    <p>Lorem ipsum dolor .</p>
                   </div>
                 </div>
               </div>
@@ -338,6 +248,8 @@
                       <a href="#"><span class="fa fa-google-plus"></span></a>
                     </div>
                   </figure>
+                <!-- </div> -->
+                <!-- <div class="mu-our-teacher-single"> -->
                   <div class="mu-ourteacher-single-content">
                     <h4>Brian Dean</h4>
                     <span>Math Teacher</span>
@@ -469,5 +381,3 @@
   </div>
 </section>
 <!-- End our teacher -->
-
-

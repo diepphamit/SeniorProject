@@ -41,25 +41,40 @@ export class PopupComponent implements AfterViewInit {
         arrow.attr('src', 'https://maxcdn.icons8.com/windows10/PNG/16/Arrows/angle_down-16.png');
       }
     });
-
-    textarea.keypress(function (event) {
-      const $this = $(this);
-      if (event.keyCode === 13) {
-        const msg = $this.val();
-        $this.val('');
-        $('.chat-body').stop().animate({ scrollTop: $('.chat-body')[0].scrollHeight }, 1000);
-      }
-    });
   }
 
   onKeypressEvent(value) {
-    if (value.code === 'Enter') {
+    if (value.code === 'Enter' && this.str.trim() !== '') {
       this.arr.push({ key: true, value: this.str });
-      let data = { data: this.str };
-      this.chatbotService.createChatbot(data).subscribe(data1 => {
-        this.arr.push({ key: false, value: data1['response'] });
+      const dataRequest = { data: this.str };
+      this.str = '';
+      this.chatbotService.createChatbot(dataRequest).subscribe(dataResponse => {
+        if (dataResponse['response'] === null) {
+          this.arr.push({ key: false, value: 'Sorry! I cannot understand what you say!' });
+        } else {
+          this.arr.push({ key: false, value: dataResponse['response'] });
+        }
       });
+
+      $('.chat-body').animate({ scrollTop: $('.chat-body')[0].scrollHeight }, 500);
     }
+  }
+  send() {
+    if (this.str.trim() !== '') {
+      this.arr.push({ key: true, value: this.str });
+      const dataRequest = { data: this.str };
+      this.str = '';
+      this.chatbotService.createChatbot(dataRequest).subscribe(dataResponse => {
+        if (dataResponse['response'] === null) {
+          this.arr.push({ key: false, value: 'Sorry! I cannot understand what you say!' });
+        } else {
+          this.arr.push({ key: false, value: dataResponse['response'] });
+        }
+      });
+
+      $('.chat-body').animate({ scrollTop: $('.chat-body')[0].scrollHeight }, 500);
+    }
+
   }
 
 }

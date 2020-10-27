@@ -16,6 +16,9 @@ import { AuthService } from './services/auth.service';
 import { ACCESS_TOKEN } from './constants/db-keys';
 import { JwtModule } from '@auth0/angular-jwt';
 import { ValidationService } from './services/validation.service';
+import { TopicService } from './services/topic.service';
+import { FlashcardService } from './services/flashcard.service';
+import { UserService } from './services/user.service';
 
 export function tokenGetter() {
   return localStorage.getItem(ACCESS_TOKEN);
@@ -55,7 +58,10 @@ export function tokenGetter() {
     ChatbotService,
     TestService,
     AuthService,
-    ValidationService
+    ValidationService,
+    TopicService,
+    FlashcardService,
+    UserService
   ],
   bootstrap: [AppComponent]
 })

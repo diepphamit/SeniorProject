@@ -22,8 +22,10 @@ namespace MainMicroservice.Implementions
             _context = context;
             _mapper = mapper;
         }
-        public async Task<Test> CreateTestAsync(TestAndTestDetailForCreate testForCreate)
+        public async Task<TestAndTestDetailForReturn> CreateTestAsync(TestAndTestDetailForCreate testForCreate)
         {
+            var testDetailForReturn = new List<TestDetailAndTestForReturn>();
+
             var totalCorrect = this.GetTotalCorret(testForCreate.TestDetails.ToList());
 
             Test test = new Test
@@ -51,14 +53,32 @@ namespace MainMicroservice.Implementions
                     Test = test
                 };
 
+                testDetailForReturn.Add(new TestDetailAndTestForReturn
+                {
+                    Answer1 = item.Answer1,
+                    Answer1Meaning = item.Answer1Meaning,
+                    Answer2 = item.Answer2,
+                    Answer2Meaning = item.Answer2Meaning,
+                    Answer3 = item.Answer3,
+                    Answer3Meaning = item.Answer3Meaning,
+                    Answer4 = item.Answer4,
+                    Answer4Meaning = item.Answer4Meaning,
+                    FlashcardId = item.FlashcardId,
+                    Word = item.Word,
+                    MyAnswer = item.MyAnswer
+                });
                 _context.TestDetails.Add(testDetail);
+         
             }
 
             try
             {
                 await _context.SaveChangesAsync();
 
-                return test;
+                var testForReturn = _mapper.Map<TestAndTestDetailForReturn>(test);
+                testForReturn.TestDetails = testDetailForReturn;
+
+                return testForReturn;
             }
             catch (Exception ex)
             {

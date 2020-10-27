@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 
 @Injectable()
 export class FlashcardService {
-  baseUrl = 'https://localhost:5001/api/' + 'flashcard';
+  baseUrl = 'https://localhost:44386/api/' + 'flashcard';
 
   constructor(private http: HttpClient) {
   }

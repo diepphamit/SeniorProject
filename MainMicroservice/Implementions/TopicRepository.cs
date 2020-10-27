@@ -69,8 +69,13 @@ namespace MainMicroservice.Implementions
                 return topics;
             }
 
-            var s = _context.Tests.AsEnumerable().Count();
             return _context.Topics.AsEnumerable();
+        }
+
+        public IEnumerable<Topic> GetPopularTopics()
+        {
+            Random rnd = new Random();
+            return _context.Topics.ToList().OrderBy(x => rnd.Next()).Take(6).AsEnumerable();
         }
 
         public async Task<Topic> GetTopicByIdAsync(int id)
@@ -87,6 +92,7 @@ namespace MainMicroservice.Implementions
             try
             {
                 topic.Name = topicForUpdate.Name;
+                topic.Content = topicForUpdate.Content;
 
                 await _context.SaveChangesAsync();
 

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using DataAccess.Entities;
+using MainMicroservice.Dtos.Flashcards;
 using MainMicroservice.Dtos.UserFlashcards;
 using MainMicroservice.Helpers;
 using MainMicroservice.Interfaces;
@@ -44,6 +45,35 @@ namespace MainMicroservice.Controllers
                 var response = _mapper.Map<IEnumerable<UserFlashcard>, IEnumerable<UserFlashcardForReturn>>(query);
 
                 var paginationSet = new PaginationSet<UserFlashcardForReturn>()
+                {
+                    Items = response.ToList(),
+                    Total = totalCount,
+                };
+
+                return Ok(paginationSet);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest();
+            }
+        }
+
+        [HttpGet("GetFlashcardsByUserId")]
+        public IActionResult GetFlashcardsByUserId(int userId, int page = 1, int pageSize = 10)
+        {
+            try
+            {
+                //var currentUserFlashcard = HttpContext.UserFlashcard.Identity.Name;
+                //var list = _userFlashcardRepository.GetFlashcardByUserId(keyword);
+                //list = list.Where(x => x.UserFlashcardName != currentUserFlashcard);
+                var flashcards = _userFlashcardRepository.GetFlashcardByUserId(userId);
+
+                int totalCount = flashcards.Count();
+
+                var query = flashcards.OrderByDescending(x => x.Id).Skip((page - 1) * pageSize).Take(pageSize);
+                var response = _mapper.Map<IEnumerable<Flashcard>, IEnumerable<FlashcardForReturn>>(query);
+
+                var paginationSet = new PaginationSet<FlashcardForReturn>()
                 {
                     Items = response.ToList(),
                     Total = totalCount,

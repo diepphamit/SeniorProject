@@ -8,5 +8,6 @@ namespace MainMicroservice.Dtos.Topic
     public class TopicForUpdate
     {
         public string Name { get; set; }
+        public string Content { get; set; }
     }
 }

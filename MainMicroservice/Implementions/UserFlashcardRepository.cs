@@ -75,6 +75,23 @@ namespace MainMicroservice.Implementions
             return _context.UserFlashcards.AsEnumerable();
         }
 
+        public IEnumerable<Flashcard> GetFlashcardByUserId(int userId)
+        {
+            var flashcardForReturn = new List<Flashcard>();
+            var flashcards = _context.UserFlashcards.Where(x => x.UserId == userId).Include(x => x.Flashcard).Select(x => x.Flashcard);
+
+            foreach(var flashcard in flashcards)
+            {
+                flashcardForReturn.Add(_context.Flashcards
+                   .Include(x => x.Pronunciations)
+                   .Include(x => x.Images)
+                   .Include(x => x.UserFlashcards)
+                   .Include(x => x.Topic).FirstOrDefault(x => x.Id == flashcard.Id));
+            }
+
+            return flashcardForReturn;
+        }
+
         public async Task<UserFlashcard> GetUserFlashcardByIdAsync(int id)
         {
             return await _context.UserFlashcards.FirstOrDefaultAsync(x => x.Id == id);

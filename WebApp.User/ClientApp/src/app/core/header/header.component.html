@@ -58,7 +58,7 @@
       </button>
       <!-- LOGO -->
       <!-- TEXT BASED LOGO -->
-      <a class="navbar-brand" href="index.html"><i class="fa fa-university"></i><span>Flashcard</span></a>
+      <a class="navbar-brand" [routerLink]="['/']"><i class="fa fa-university"></i><span>Flashcard</span></a>
       <!-- IMG BASED LOGO  -->
       <!-- <a class="navbar-brand" href="index.html"><img src="assets/img/logo.png" alt="logo"></a> -->
     </div>
@@ -72,17 +72,17 @@
             <li><a href="course-detail.html">Course Detail</a></li>
           </ul>
         </li> -->
-        <li><a [routerLink]="['/Home']">Topic</a></li>
+        <li><a [routerLink]="['/topic']">Topic</a></li>
         <li><a [routerLink]="['/Home']">Translation</a></li>
-        <li *ngIf="isUser"><a [routerLink]="['/Home']">Test</a></li>
+        <li *ngIf="isUser"><a routerLink="/test/{{getuserId}}">Test</a></li>
         <li *ngIf="isUser" class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{name}} <span class="fa fa-angle-down"></span></a>
           <ul class="dropdown-menu" role="menu">
-            <li><a href="blog-archive.html">My Profile</a></li>
+            <li><a routerLink="/profile/{{getuserId}}">My Profile</a></li>
             <li><a href="blog-single.html">My Flashcard</a></li>
             <li><a href="blog-single.html">Create Flashcard</a></li>
             <li><a href="blog-single.html">History Test</a></li>
-            <li><a (click)="logout()">Logout</a></li>
+            <li><a style = "cursor: pointer;" (click)="logout()">Logout</a></li>
           </ul>
         </li>
         <li *ngIf="!isUser"><a [routerLink]="['/register']">Sign Up</a></li>

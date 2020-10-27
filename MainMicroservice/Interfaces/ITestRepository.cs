@@ -11,7 +11,7 @@ namespace MainMicroservice.Interfaces
     {
         IEnumerable<Test> GetAllTests(string keyword);
         Task<Test> GetTestByIdAsync(int id);
-        Task<Test> CreateTestAsync(TestAndTestDetailForCreate testForCreate);
+        Task<TestAndTestDetailForReturn> CreateTestAsync(TestAndTestDetailForCreate testForCreate);
 
         Task<bool> UpdateTestAsync(int id, TestForUpdate testForUpdate);
         Task<bool> DeleteTestAsync(int id);

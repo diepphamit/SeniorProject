@@ -558,7 +558,8 @@ img {
  ABOUT US COUNTER SECTION
 ====================*/
 #mu-abtus-counter {
-  background-image: url("../img/counter-bg.jpg");
+  /* background-image: url("../img/counter-bg.jpg"); */
+  background-color: #45a0de;
   background-repeat: no-repeat;
   background-size: 100%;
   display: inline;
@@ -771,14 +772,14 @@ img {
 .mu-latest-course-single .mu-latest-course-single-content .mu-latest-course-single-contbottom {
   border-top: 1px solid #ccc;
   display: inline;
-  float: left;
+  float: right;
   margin-top: 15px;
   padding-top: 15px;
   width: 100%;
 }
 .mu-latest-course-single .mu-latest-course-single-content .mu-latest-course-single-contbottom .mu-course-details {
   display: inline-block;
-  float: left;
+  float: right;
   -webkit-transition: all 0.5s;
   -moz-transition: all 0.5s;
   -ms-transition: all 0.5s;
@@ -884,7 +885,7 @@ img {
 }
 #mu-our-teacher .mu-our-teacher-area .mu-our-teacher-content .mu-our-teacher-single .mu-ourteacher-single-content h4 {
   margin-bottom: 0;
-  margin-top: 20px;
+  margin-top: 8%;
   text-transform: uppercase;
 }
 #mu-our-teacher .mu-our-teacher-area .mu-our-teacher-content .mu-our-teacher-single .mu-ourteacher-single-content span {

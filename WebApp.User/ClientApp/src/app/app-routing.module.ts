@@ -24,6 +24,22 @@ const routes: Routes = [
       {
         path: 'register',
         loadChildren: () => import('./pages/register/register.module').then(m => m.RegisterModule)
+      },
+      {
+        path: 'topic',
+        loadChildren: () => import('./pages/topic/topic.module').then(m => m.TopicModule)
+      },
+      {
+        path: 'flashcard',
+        loadChildren: () => import('./pages/flashcard/flashcard.module').then(m => m.FlashcardModule)
+      },
+      {
+        path: 'test',
+        loadChildren: () => import('./pages/test/test.module').then(m => m.TestModule)
+      },
+      {
+        path: 'profile',
+        loadChildren: () => import('./pages//profile/profile.module').then(m => m.ProfileModule)
       }
     ]
   }

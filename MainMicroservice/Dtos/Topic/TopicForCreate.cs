@@ -8,5 +8,7 @@ namespace MainMicroservice.Dtos.Topic
     public class TopicForCreate
     {
         public string Name { get; set; }
+        public string Content { get; set; }
+
     }
 }
