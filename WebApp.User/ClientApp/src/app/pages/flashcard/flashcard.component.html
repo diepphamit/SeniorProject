@@ -6,7 +6,7 @@
         <div class="mu-page-breadcrumb-area">
           <h2>Topic</h2>
           <ol class="breadcrumb">
-            <li class="active">All Topic</li>
+            <li *ngIf  = "topic != null" class="active"><h2>{{topic.name}}</h2></li>
           </ol>
         </div>
       </div>
@@ -30,7 +30,7 @@
 
                     <div class="mu-our-teacher-single">
                       <figure class="mu-our-teacher-img">
-                        <img src="assets/img/teachers/teacher-01.png" alt="teacher img">
+                        <img src="{{item.images[0].imageUrl}}" style ="width: 260px; height: 265;" alt="teacher img">
                         <div class="mu-our-teacher-social">
                           <a href="#"><span class="fa fa-facebook"></span></a>
                           <a href="#"><span class="fa fa-twitter"></span></a>
@@ -39,7 +39,7 @@
                         </div>
                       </figure>
                       <div class="mu-ourteacher-single-content">
-                        <h4>Brian Dean</h4>
+                        <h4>{{item.word}}</h4>
                         <span>Math Teacher</span>
                         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique quod pariatur recusandae odio
                           dignissimos. Eligendi.</p>
@@ -52,6 +52,20 @@
                   <pagination-controls class="custom-pagination" (pageChange)="getFlashcardsByTopicId($event)"
                     autoHide="true" responsive="true" previousLabel="Trước" nextLabel="Sau" directionLinks="true">
                   </pagination-controls>
+                </div>
+                <div class="col-lg-3 col-md-3  col-sm-6">
+                  <div class="flip-card">
+                    <div class="flip-card-inner">
+                      <div class="flip-card-front">
+                        <img src="assets/img/teachers/teacher-01.png" alt="Avatar" style="width:260px;height:265px;">
+                      </div>
+                      <div class="flip-card-back">
+                        <h1>John Doe</h1>
+                        <p>Architect & Engineer</p>
+                        <p>We love that guy</p>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>

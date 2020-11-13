@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
+import { CURRENT_USER } from 'src/app/constants/db-keys';
 import { TestService } from 'src/app/services/test.service';
 
 @Component({
@@ -32,7 +33,7 @@ export class TestComponent implements OnInit {
   }
 
   getTests(page: number) {
-    this.itemsAsync = this.testService.getTests(this.keyword, page, this.pageSize)
+    this.itemsAsync = this.testService.getTests(this.getuserId, page, this.pageSize)
       .pipe(
         tap(response => {
           this.total = response.total;
@@ -48,7 +49,7 @@ export class TestComponent implements OnInit {
 
   addTest() {
     const testForCreate = {
-      userId: 1,
+      userId: this.getuserId,
       createAt: new Date(),
       testDetails: this.dataTest
     };
@@ -58,6 +59,12 @@ export class TestComponent implements OnInit {
       this.count = 1;
 
     });
+  }
+
+  get getuserId() {
+    const user = JSON.parse(localStorage.getItem(CURRENT_USER));
+
+    return user.id;
   }
 
   addMyAnswer(flashcardId, myAnswer) {

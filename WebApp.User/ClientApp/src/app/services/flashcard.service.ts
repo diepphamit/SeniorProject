@@ -18,8 +18,37 @@ export class FlashcardService {
     return this.http.get(`${this.baseUrl}/${id}`);
   }
 
+  getFlashcardHome(): Observable<any> {
+    return this.http.get(`${this.baseUrl}/GetFlashcardHome`);
+  }
+
   getFlashcardsByTopicId(topicId: number, page: number, pageSize: number): Observable<any> {
     return this.http.get(`${this.baseUrl}/GetFlashcardsByTopicId?topicId=${topicId}&page=${page}&pageSize=${pageSize}`);
+  }
+
+  getFlashcardsByUserId(userId: number, page: number, pageSize: number): Observable<any> {
+    return this.http.get(`${this.baseUrl}/GetFlashcardsByUserId?userId=${userId}&page=${page}&pageSize=${pageSize}`);
+  }
+
+  createFlashcardByAI(flashcard) {
+    const formData = new FormData();
+    formData.append('image', flashcard.file, flashcard.file.name);
+    formData.append('userId', flashcard.userId);
+    return this.http.post('https://localhost:44386/api/flashcard/CreateFlashcardAI', formData);
+  }
+
+  createFlashcardByUser(flashcard) {
+    const formData = new FormData();
+    formData.append('file', flashcard.file, flashcard.file.name);
+    formData.append('userId', flashcard.userId);
+    formData.append('word', flashcard.word);
+    formData.append('meaning', flashcard.meaning);
+    formData.append('topicId', flashcard.topicId);
+    formData.append('phonetic', flashcard.phonetic);
+    formData.append('example', flashcard.example);
+    formData.append('type', flashcard.type);
+    formData.append('pronunciationLink', flashcard.pronunciationLink);
+    return this.http.post('https://localhost:44386/api/flashcard/CreateFlashcardByUserId', formData);
   }
 
   // createFlashcard(flashcard: any) {

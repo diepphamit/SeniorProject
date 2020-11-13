@@ -76,11 +76,14 @@ namespace MainMicroservice.Implementions
 
         public IEnumerable<TestDetailAndTestForCreate> GetTestsByUserId(int userId)
         {
-            var userFlashcards = _context.UserFlashcards.ToList();
+            Random rnd = new Random();
+
+            var userFlashcards = _context.UserFlashcards.Where(x => x.UserId == userId).ToList();
+            userFlashcards = userFlashcards.OrderBy(x => rnd.Next()).ToList();
 
             var listReturn = new List<TestDetailAndTestForCreate>();
 
-            Random rnd = new Random();
+            
             //var flashcards = _context.Flashcards.OrderBy(x => rnd.Next()).ToList();
             var flashcards = _context.Flashcards.ToList();
             foreach (var item in userFlashcards)

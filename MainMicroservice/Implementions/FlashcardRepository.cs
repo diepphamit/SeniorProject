@@ -37,7 +37,7 @@ namespace MainMicroservice.Implementions
             _cloudinary = new Cloudinary(acc);
         }
 
-        public async Task<bool> CreateFlashcardAIAsync(FlashcardForCreateAI flashcardForCreate)
+        public async Task<bool> CreateFlashcardAIAsync(FlashcardForCreateAI flashcardForCreate, int userId)
         {
             try
             {
@@ -46,6 +46,19 @@ namespace MainMicroservice.Implementions
                 flashcard.IsSystem = false;
 
                 _context.Flashcards.Add(flashcard);
+
+                var user = await _context.Users.FirstOrDefaultAsync(x => x.Id == userId);
+                if(user != null)
+                {
+                    UserFlashcard userFlashcard = new UserFlashcard
+                    {
+                        User = user,
+                        Flashcard = flashcard
+                    };
+
+                    _context.UserFlashcards.Add(userFlashcard);
+                }
+                
 
                 Pronunciation pronunciation = new Pronunciation
                 {
@@ -113,6 +126,77 @@ namespace MainMicroservice.Implementions
             }
         }
 
+        public async Task<bool> CreateFlashcardByUserIdAsync(FlashcardForCreateByUserId flashcardForCreate, int userId)
+        {
+            try
+            {
+                var flashcard = _mapper.Map<Flashcard>(flashcardForCreate);
+                flashcard.TopicId = 1;
+                flashcard.IsSystem = false;
+
+                _context.Flashcards.Add(flashcard);
+
+                var user = await _context.Users.FirstOrDefaultAsync(x => x.Id == userId);
+                if (user != null)
+                {
+                    UserFlashcard userFlashcard = new UserFlashcard
+                    {
+                        User = user,
+                        Flashcard = flashcard
+                    };
+
+                    _context.UserFlashcards.Add(userFlashcard);
+                }
+
+
+                Pronunciation pronunciation = new Pronunciation
+                {
+                    Link = flashcardForCreate.PronunciationLink,
+                    Phonetic = flashcardForCreate.Phonetic,
+                    Flashcard = flashcard
+
+                };
+
+                _context.Pronunciations.Add(pronunciation);
+
+                var image = flashcardForCreate.File;
+
+                var uploadResult = new ImageUploadResult();
+
+                if (image.Length > 0)
+                {
+                    using (var stream = image.OpenReadStream())
+                    {
+                        var uploadParams = new ImageUploadParams()
+                        {
+                            File = new FileDescription(image.Name, stream),
+                            Transformation = new Transformation()
+                                .Width(500).Height(500).Crop("fill").Gravity("face")
+                        };
+
+                        uploadResult = _cloudinary.Upload(uploadParams);
+                    }
+
+
+                    Image img = new Image
+                    {
+                        ImageUrl = uploadResult.Url.ToString(),
+                        Flashcard = flashcard
+                    };
+
+                    _context.Images.Add(img);
+
+                }
+
+                await _context.SaveChangesAsync();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+
         public async Task<bool> DeleteFlashcardAsync(int id)
         {
             var flashcard = await GetFlashcardByIdAsync(id);
@@ -166,9 +250,39 @@ namespace MainMicroservice.Implementions
                    .AsEnumerable();
         }
 
+        public IEnumerable<Flashcard> GetAllFlashcardsByUserId(int userId)
+        {
+            var flashcardsForReturn = new List<Flashcard>();
+            var userFlashcards = _context.UserFlashcards.Where(x => x.UserId == userId).ToList();
+
+            foreach(var item in userFlashcards)
+            {
+                flashcardsForReturn.Add(_context.Flashcards
+                   .Include(x => x.Pronunciations)
+                   .Include(x => x.Images)
+                   .Include(x => x.UserFlashcards)
+                   .Include(x => x.Topic)
+                   .FirstOrDefault(x => x.Id == item.FlashcardId));
+            }
+
+            return flashcardsForReturn.AsEnumerable();
+
+        }
+
         public async Task<Flashcard> GetFlashcardByIdAsync(int id)
         {
             return await _context.Flashcards.FirstOrDefaultAsync(x => x.Id == id);
+        }
+
+        public async Task<FlashcardHomeForReturn> GetFlashcardHomeAsync()
+        {
+            var flashcardHome = new FlashcardHomeForReturn();
+
+            flashcardHome.TotalTopic = _context.Topics.ToList().Count;
+            flashcardHome.TotalUser = _context.Users.ToList().Count;
+            flashcardHome.TotalFlashcard = _context.Flashcards.ToList().Count;
+
+            return flashcardHome;
         }
 
         public async Task<bool> UpdateFlashcardAsync(int id, FlashcardForUpdate flashcardForUpdate)

@@ -157,5 +157,27 @@ namespace MainMicroservice.Implementions
                 return false;
             }
         }
+
+        public IEnumerable<Test> GetHistoryTestsByUserId(int userId)
+        {
+           return _context.Tests.Where(x => x.UserId == userId).AsEnumerable();
+        }
+
+        public async Task<TestAndTestDetailForReturn> GetTestDeatilByIdAsync(int id)
+        {
+            var test = await _context.Tests.Include(x => x.TestDetails).FirstOrDefaultAsync(x => x.Id == id);
+
+            var testReturn = _mapper.Map<TestAndTestDetailForReturn>(test);
+            foreach (var item in testReturn.TestDetails)
+            {
+                item.Word = _context.Flashcards.FirstOrDefault(x => x.Id == item.FlashcardId).Word;
+                item.Answer1Meaning = _context.Flashcards.FirstOrDefault(x => x.Id == item.Answer1).Meaning;
+                item.Answer2Meaning = _context.Flashcards.FirstOrDefault(x => x.Id == item.Answer2).Meaning;
+                item.Answer3Meaning = _context.Flashcards.FirstOrDefault(x => x.Id == item.Answer3).Meaning;
+                item.Answer4Meaning = _context.Flashcards.FirstOrDefault(x => x.Id == item.Answer4).Meaning;
+            }
+
+            return testReturn;
+        }
     }
 }

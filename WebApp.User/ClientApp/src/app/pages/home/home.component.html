@@ -107,40 +107,40 @@
         <div class="mu-abtus-counter-area">
           <div class="row">
             <!-- Start counter item -->
-            <div class="col-lg-3 col-md-3 col-sm-3">
+            <div class="col-lg-4 col-md-4 col-sm-4">
               <div class="mu-abtus-counter-single">
                 <span class="fa fa-book"></span>
-                <h4 class="counter">568</h4>
-                <p>Subjects</p>
+                <h4 *ngIf="falshcardHome" class="counter">{{falshcardHome.totalTopic}}</h4>
+                <p>Topic</p>
               </div>
             </div>
             <!-- End counter item -->
             <!-- Start counter item -->
-            <div class="col-lg-3 col-md-3 col-sm-3">
+            <div class="col-lg-4 col-md-4 col-sm-4">
               <div class="mu-abtus-counter-single">
                 <span class="fa fa-users"></span>
-                <h4 class="counter">3500</h4>
-                <p>Students</p>
+                <h4 *ngIf="falshcardHome" class="counter">{{falshcardHome.totalUser}}</h4>
+                <p>User</p>
               </div>
             </div>
             <!-- End counter item -->
             <!-- Start counter item -->
-            <div class="col-lg-3 col-md-3 col-sm-3">
-              <div class="mu-abtus-counter-single">
-                <span class="fa fa-flask"></span>
-                <h4 class="counter">65</h4>
-                <p>Modern Lab</p>
+            <div class="col-lg-4 col-md-4 col-sm-4">
+              <div class="mu-abtus-counter-single no-border">
+                <span class="fa fa-car"></span>
+                <h4 *ngIf="falshcardHome" class="counter">{{falshcardHome.totalFlashcard}}</h4>
+                <p>Flashcard</p>
               </div>
             </div>
             <!-- End counter item -->
             <!-- Start counter item -->
-            <div class="col-lg-3 col-md-3 col-sm-3">
+            <!-- <div class="col-lg-3 col-md-3 col-sm-3">
               <div class="mu-abtus-counter-single no-border">
                 <span class="fa fa-user-secret"></span>
                 <h4 class="counter">250</h4>
                 <p>Teachers</p>
               </div>
-            </div>
+            </div> -->
             <!-- End counter item -->
           </div>
         </div>
@@ -169,13 +169,13 @@
               *ngFor="let item of topicsAsync | async">
               <div class="mu-latest-course-single">
                 <figure class="mu-latest-course-img">
-                  <a href="#"><img src="../../../assets//img//slider//test_topic.jpg" alt="img"></a>
+                  <a href="#"><img src="{{item.imageUrl}}" alt="img"></a>
                 </figure>
                 <div class="mu-latest-course-single-content">
                   <h3><a href="#">{{item.name}}</a></h3>
-                  <p>{{item.content}}</p>
+                  <p style="height: 100px;">{{item.content}}</p>
                   <div class="mu-latest-course-single-contbottom">
-                    <a class="mu-course-details" href="#">Details</a>
+                    <a class="mu-course-details" routerLink="/flashcard/topic/{{item.id}}">Details</a>
                     <!-- <span class="mu-course-price" href="#">$165.00</span> -->
                   </div>
                 </div>
@@ -219,16 +219,24 @@
                   </figure>
                   <div class="mu-ourteacher-single-content">
                     <div class="row">
-                      <div class="col-sm-9">
+                      <div class="col-sm-8">
                         <h4>Brian Dean</h4>
                       </div>
-                      <div class="col-sm-3 ml-auto">
+                      <div class="col-sm-2 mr-auto">
+
                         <a style="cursor: pointer; "><img style="width: 30px;
                           height: 30px;
                           margin-top: 5px;" src="./../../../assets//img//slider//speaker1.svg" alt="teacher img">
 
                         </a>
                         <!-- <h4 style="text-align: right;">Loa</h4> -->
+                      </div>
+                      <div class="col-sm-2 ml-auto">
+                        <a style="cursor: pointer; "><img style="width: 30px;
+                        height: 30px;
+                        margin-top: 5px;" src="./../../../assets//img/heart_black.svg" alt="teacher img">
+
+                        </a>
                       </div>
                     </div>
                     <!-- <p style="text-align: right;">Bp</p> -->
@@ -238,6 +246,21 @@
                 </div>
               </div>
               <div class="col-lg-3 col-md-3  col-sm-6">
+                <div class="flip-card">
+                  <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                      <img src="assets/img/teachers/teacher-01.png" alt="Avatar" style="width:260px;height:265px;">
+                    </div>
+                    <div class="flip-card-back">
+                      <h1>John Doe</h1>
+                      <p>Architect & Engineer</p>
+                      <p>We love that guy</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-3 col-md-3  col-sm-6">
+
                 <div class="mu-our-teacher-single">
                   <figure class="mu-our-teacher-img">
                     <img src="assets/img/teachers/teacher-01.png" alt="teacher img">
@@ -248,8 +271,8 @@
                       <a href="#"><span class="fa fa-google-plus"></span></a>
                     </div>
                   </figure>
-                <!-- </div> -->
-                <!-- <div class="mu-our-teacher-single"> -->
+                  <!-- </div> -->
+                  <!-- <div class="mu-our-teacher-single"> -->
                   <div class="mu-ourteacher-single-content">
                     <h4>Brian Dean</h4>
                     <span>Math Teacher</span>

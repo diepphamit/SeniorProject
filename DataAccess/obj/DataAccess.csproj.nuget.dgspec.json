@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\DAVID-DIEP\\source\\repos\\SeniorProject\\DataAccess\\DataAccess.csproj": {}
+    "c:\\Users\\DAVID-DIEP\\source\\repos\\SeniorProject\\DataAccess\\DataAccess.csproj": {}
   },
   "projects": {
-    "C:\\Users\\DAVID-DIEP\\source\\repos\\SeniorProject\\DataAccess\\DataAccess.csproj": {
+    "c:\\Users\\DAVID-DIEP\\source\\repos\\SeniorProject\\DataAccess\\DataAccess.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\DAVID-DIEP\\source\\repos\\SeniorProject\\DataAccess\\DataAccess.csproj",
+        "projectUniqueName": "c:\\Users\\DAVID-DIEP\\source\\repos\\SeniorProject\\DataAccess\\DataAccess.csproj",
         "projectName": "DataAccess",
-        "projectPath": "C:\\Users\\DAVID-DIEP\\source\\repos\\SeniorProject\\DataAccess\\DataAccess.csproj",
+        "projectPath": "c:\\Users\\DAVID-DIEP\\source\\repos\\SeniorProject\\DataAccess\\DataAccess.csproj",
         "packagesPath": "C:\\Users\\DAVID-DIEP\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\DAVID-DIEP\\source\\repos\\SeniorProject\\DataAccess\\obj\\",
+        "outputPath": "c:\\Users\\DAVID-DIEP\\source\\repos\\SeniorProject\\DataAccess\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\DAVID-DIEP\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -86,9 +86,6 @@
           "assetTargetFallback": true,
           "warn": true,
           "frameworkReferences": {
-            "Microsoft.AspNetCore.App": {
-              "privateAssets": "none"
-            },
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }

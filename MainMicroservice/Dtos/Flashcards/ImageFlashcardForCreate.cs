@@ -12,5 +12,7 @@ namespace MainMicroservice.Dtos.Flashcards
         [Required]
         [Display(Name = "Image")]
         public IFormFile Image { get; set; }
+
+        public int UserId { get; set; }
     }
 }

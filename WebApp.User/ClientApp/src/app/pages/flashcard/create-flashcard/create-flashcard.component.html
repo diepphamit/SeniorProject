@@ -1,0 +1,129 @@
+<div class="container">
+  <div class="tabset">
+    <!-- Tab 1 -->
+    <input type="radio" name="tabset" id="tab1" aria-controls="marzen" checked>
+    <label for="tab1">Create Flashcard</label>
+    <!-- Tab 2 -->
+    <input type="radio" name="tabset" id="tab2" aria-controls="rauchbier">
+    <label for="tab2">Create Flashcard by AI</label>
+
+    <div class="tab-panels">
+      <section id="marzen" class="tab-panel">
+        <h2 style="text-align: center;">Create Flashcard</h2>
+        <form [formGroup]="createFlashcardForm"  novalidate>
+          <div class="box-body">
+            <div class="row">
+              <div class="col-sm-6">
+                <div class="form-group">
+                  <label>Word</label>
+                  <input type="text" class="form-control" formControlName="word"  placeholder="Word">
+
+                </div>
+                <div class="form-group">
+                  <label>Meaning</label>
+                  <input type="text" class="form-control" formControlName="meaning"  placeholder="Meaning">
+                </div>
+                <div class="form-group">
+                  <label>Type</label>
+                  <input type="text" class="form-control" formControlName="type"  placeholder="Type">
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <div class="form-group">
+                  <label>Exampe</label>
+                  <input type="text" class="form-control" formControlName="example"  placeholder="Exampe">
+
+                </div>
+                <div class="form-group">
+                  <label>Phonetic</label>
+                  <input type="text" class="form-control" formControlName="phonetic"  placeholder="Phonetic">
+                </div>
+                <div class="form-group">
+                  <label>PronunciationLink</label>
+                  <input type="text" class="form-control" formControlName="pronunciationLink"  placeholder="Pronunciation Link">
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <div class="form-group">
+                  <label>TopicId</label>
+                  <input type="text" class="form-control" formControlName="topicId"  placeholder="TopicId">
+                </div>
+
+                <div class="form-group">
+                  <label>Đường dẫn</label>
+                  <!-- <input type="text" class="form-control" formControlName="imageUrl" placeholder="Đường dẫn"
+                    [ngClass]="{ 'is-invalid': f.imageUrl.errors }"> -->
+                  <ngx-file-drop dropZoneLabel="Drop files here" (onFileDrop)="dropped1($event)"
+                    (onFileOver)="fileOver($event)" (onFileLeave)="fileLeave($event)">
+                    <ng-template ngx-file-drop-content-tmp let-openFileSelector="openFileSelector">
+                      Thả hình ảnh vào đây
+                      <button type="button" (click)="openFileSelector()">Browse Files</button>
+                    </ng-template>
+                  </ngx-file-drop>
+                  <div class="upload-table">
+                    <table class="table">
+                      <thead>
+                        <tr>
+                          <th>Name</th>
+                        </tr>
+                      </thead>
+                      <tbody class="upload-name-style">
+                        <tr *ngFor="let item of files; let i=index">
+                          <td><strong>{{ item.relativePath }}</strong></td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+                <!-- <div class="form-group">
+                  <label>Them topic </label>
+                  <select class="form-control" >
+                    <option *ngFor=" let topic of topics | async" value={{topic.id}}> {{ topic.name}}</option>
+                  </select>
+                </div> -->
+              </div>
+            </div>
+          </div>
+          <div class="box-footer text-center">
+            <button [routerLink]="['/flashcards']" class="btn btn-default">Hủy</button>
+            <button type="button"  class="btn btn-success" (click) = "createFlashcardByuserId()">Lưu</button>
+          </div>
+        </form>
+    </section>
+      <section id="rauchbier" class="tab-panel">
+        <h2 style="text-align: center;">Create Flashcard by AI</h2>
+        <div class="col-sm-3">
+          <div class="form-group">
+            <label>Đường dẫn</label>
+            <!-- <input type="text" class="form-control" formControlName="imageUrl" placeholder="Đường dẫn"
+              [ngClass]="{ 'is-invalid': f.imageUrl.errors }"> -->
+            <ngx-file-drop dropZoneLabel="Drop files here" (onFileDrop)="dropped($event)"
+              (onFileOver)="fileOver($event)" (onFileLeave)="fileLeave($event)">
+              <ng-template ngx-file-drop-content-tmp let-openFileSelector="openFileSelector">
+                Thả hình ảnh vào đây
+                <button type="button" (click)="openFileSelector()">Browse Files</button>
+              </ng-template>
+            </ngx-file-drop>
+            <div class="upload-table">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>Name</th>
+                  </tr>
+                </thead>
+                <tbody class="upload-name-style">
+                  <tr *ngFor="let item of files; let i=index">
+                    <td><strong>{{ item.relativePath }}</strong></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+
+  </div>
+</div>
+

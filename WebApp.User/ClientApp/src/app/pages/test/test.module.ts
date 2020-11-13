@@ -5,6 +5,8 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ControlModule } from 'src/app/helpers/control.module';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { HistoryTestComponent } from './history-test/history-test.component';
+import { DetailTestComponent } from './detail-test/detail-test.component';
 
 @NgModule({
   imports: [
@@ -15,6 +17,6 @@ import { NgxPaginationModule } from 'ngx-pagination';
     ControlModule,
     NgxPaginationModule
   ],
-  declarations: [TestComponent]
+  declarations: [TestComponent, HistoryTestComponent, DetailTestComponent]
 })
 export class TestModule { }

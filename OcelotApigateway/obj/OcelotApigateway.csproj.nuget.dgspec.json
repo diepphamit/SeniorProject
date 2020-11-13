@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\DAVID-DIEP\\source\\repos\\SeniorProject\\OcelotApigateway\\OcelotApigateway.csproj": {}
+    "c:\\Users\\DAVID-DIEP\\source\\repos\\SeniorProject\\OcelotApigateway\\OcelotApigateway.csproj": {}
   },
   "projects": {
-    "C:\\Users\\DAVID-DIEP\\source\\repos\\SeniorProject\\OcelotApigateway\\OcelotApigateway.csproj": {
+    "c:\\Users\\DAVID-DIEP\\source\\repos\\SeniorProject\\OcelotApigateway\\OcelotApigateway.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\DAVID-DIEP\\source\\repos\\SeniorProject\\OcelotApigateway\\OcelotApigateway.csproj",
+        "projectUniqueName": "c:\\Users\\DAVID-DIEP\\source\\repos\\SeniorProject\\OcelotApigateway\\OcelotApigateway.csproj",
         "projectName": "OcelotApigateway",
-        "projectPath": "C:\\Users\\DAVID-DIEP\\source\\repos\\SeniorProject\\OcelotApigateway\\OcelotApigateway.csproj",
+        "projectPath": "c:\\Users\\DAVID-DIEP\\source\\repos\\SeniorProject\\OcelotApigateway\\OcelotApigateway.csproj",
         "packagesPath": "C:\\Users\\DAVID-DIEP\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\DAVID-DIEP\\source\\repos\\SeniorProject\\OcelotApigateway\\obj\\",
+        "outputPath": "c:\\Users\\DAVID-DIEP\\source\\repos\\SeniorProject\\OcelotApigateway\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\DAVID-DIEP\\AppData\\Roaming\\NuGet\\NuGet.Config",

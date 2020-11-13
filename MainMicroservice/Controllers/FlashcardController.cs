@@ -92,6 +92,45 @@ namespace MainMicroservice.Controllers
             }
         }
 
+        [HttpGet("GetFlashcardsByUserId")]
+        public IActionResult GetFlashcardsByUserId(int userId, int page = 1, int pageSize = 10)
+        {
+            try
+            {
+                //var currentFlashcard = HttpContext.Flashcard.Identity.Name;
+                //var list = _flashcardRepository.GetListFlashcardsRole(keyword);
+                //list = list.Where(x => x.FlashcardName != currentFlashcard);
+                var flashcards = _flashcardRepository.GetAllFlashcardsByUserId(userId);
+
+                int totalCount = flashcards.Count();
+
+                var query = flashcards.OrderByDescending(x => x.Id).Skip((page - 1) * pageSize).Take(pageSize);
+                var response = _mapper.Map<IEnumerable<Flashcard>, IEnumerable<FlashcardForReturn>>(query);
+
+                var paginationSet = new PaginationSet<FlashcardForReturn>()
+                {
+                    Items = response.ToList(),
+                    Total = totalCount,
+                };
+
+                return Ok(paginationSet);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest();
+            }
+        }
+
+        [HttpGet("GetFlashcardHome")]
+        public async Task<IActionResult> GetFlashcardHome()
+        {
+            var flashcard = await _flashcardRepository.GetFlashcardHomeAsync();
+            if (flashcard == null)
+                return NotFound();
+
+            return Ok(flashcard);
+        }
+
         [HttpGet("{id}")]
         public async Task<IActionResult> GetFlashcardById(int id)
         {
@@ -162,7 +201,7 @@ namespace MainMicroservice.Controllers
                     File = file.Image
                 };
 
-                var result = await _flashcardRepository.CreateFlashcardAIAsync(flashcard);
+                var result = await _flashcardRepository.CreateFlashcardAIAsync(flashcard, file.UserId);
                 if (result)
                 {
                     return Ok(new
@@ -179,6 +218,26 @@ namespace MainMicroservice.Controllers
             }
 
             return BadRequest(ModelState);
+        }
+
+        [HttpPost("CreateFlashcardByUserId")]
+        public async Task<IActionResult> CreateFlashcardAI([FromForm] FlashcardForCreateByUserId flashcardForCreate)
+        {
+            var result = await _flashcardRepository.CreateFlashcardByUserIdAsync(flashcardForCreate, flashcardForCreate.UserId);
+
+            if (result)
+            {
+                return Ok(new
+                {
+                    message = "success",
+                    StatusCode = 201
+                });
+            }
+
+            return BadRequest(new
+            {
+                message = "fail"
+            });
         }
 
         [HttpPut("{id}")]

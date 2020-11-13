@@ -95,7 +95,7 @@ namespace MainMicroservice.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateTopic([FromBody] TopicForCreate input)
+        public async Task<IActionResult> CreateTopic([FromForm] TopicForCreate input)
         {
             if (ModelState.IsValid)
             {

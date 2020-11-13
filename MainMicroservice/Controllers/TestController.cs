@@ -62,16 +62,54 @@ namespace MainMicroservice.Controllers
             }
         }
 
-        [Route("GetTest")]
+        [Route("GetHistoryTestsByUserId")]
         [HttpGet]
-        public IActionResult GetTestsByuserId()
+        public IActionResult GetHistoryTestsByUserId(int userId, int page = 1, int pageSize = 10)
         {
             try
             {
                 //var currentTest = HttpContext.Test.Identity.Name;
                 //var list = _testRepository.GetListTestsRole(keyword);
                 //list = list.Where(x => x.TestName != currentTest);
-                var tests = _testDetailRepository.GetTestsByUserId(1);
+                var tests = _testRepository.GetHistoryTestsByUserId(userId);
+
+                int totalCount = tests.Count();
+
+                var query = tests.OrderByDescending(x => x.Id).Skip((page - 1) * pageSize).Take(pageSize);
+                var response = _mapper.Map<IEnumerable<Test>, IEnumerable<TestForReturn>>(query);
+
+                var paginationSet = new PaginationSet<TestForReturn>()
+                {
+                    Items = response.ToList(),
+                    Total = totalCount,
+                };
+
+                return Ok(paginationSet);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest();
+            }
+        }
+
+        [Route("GetTestDetailById")]
+        [HttpGet]
+        public async Task<IActionResult> GetTestDetailById(int id)
+        {
+           var testDeatl = await _testRepository.GetTestDeatilByIdAsync(id);
+            return Ok(testDeatl);
+        }
+
+        [Route("GetTest")]
+        [HttpGet]
+        public IActionResult GetTestsByuserId(int userId)
+        {
+            try
+            {
+                //var currentTest = HttpContext.Test.Identity.Name;
+                //var list = _testRepository.GetListTestsRole(keyword);
+                //list = list.Where(x => x.TestName != currentTest);
+                var tests = _testDetailRepository.GetTestsByUserId(userId);
 
                 int totalCount = tests.Count();
 

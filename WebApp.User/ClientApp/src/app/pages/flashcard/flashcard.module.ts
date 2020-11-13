@@ -5,6 +5,9 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ControlModule } from 'src/app/helpers/control.module';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { CreateFlashcardComponent } from './create-flashcard/create-flashcard.component';
+import { NgxFileDropModule } from 'ngx-file-drop';
+import { MyFlashcardComponent } from './my-flashcard/my-flashcard.component';
 
 @NgModule({
   imports: [
@@ -13,8 +16,13 @@ import { NgxPaginationModule } from 'ngx-pagination';
     ReactiveFormsModule,
     FlashcardRoutingModule,
     ControlModule,
+    NgxFileDropModule,
     NgxPaginationModule
   ],
-  declarations: [FlashcardComponent]
+  declarations: [
+    FlashcardComponent,
+    CreateFlashcardComponent,
+    MyFlashcardComponent
+  ]
 })
 export class FlashcardModule { }

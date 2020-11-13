@@ -11,9 +11,12 @@ namespace MainMicroservice.Interfaces
     {
         IEnumerable<Flashcard> GetAllFlashcards(string keyword);
         IEnumerable<Flashcard> GetAllFlashcardsByTopicId(int topicId);
+        IEnumerable<Flashcard> GetAllFlashcardsByUserId(int userId);
+        Task<FlashcardHomeForReturn> GetFlashcardHomeAsync();
         Task<Flashcard> GetFlashcardByIdAsync(int id);
         Task<bool> CreateFlashcardAsync(FlashcardForCreate flashcardForCreate);
-        Task<bool> CreateFlashcardAIAsync(FlashcardForCreateAI flashcardForCreate);
+        Task<bool> CreateFlashcardAIAsync(FlashcardForCreateAI flashcardForCreate, int userId);
+        Task<bool> CreateFlashcardByUserIdAsync(FlashcardForCreateByUserId flashcardForCreate, int userId);
 
         Task<bool> UpdateFlashcardAsync(int id, FlashcardForUpdate flashcardForUpdate);
         Task<bool> DeleteFlashcardAsync(int id);

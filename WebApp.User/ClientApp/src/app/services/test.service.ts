@@ -10,8 +10,12 @@ export class TestService {
   constructor(private http: HttpClient) {
   }
 
-  getTests(keyword: string, page: number, pageSize: number): Observable<any> {
-    return this.http.get(`${this.baseUrl}/GetTest?keyword=${keyword}&page=${page}&pageSize=${pageSize}`);
+  getTests(userId: any, page: number, pageSize: number): Observable<any> {
+    return this.http.get(`${this.baseUrl}/GetTest?userId=${userId}&page=${page}&pageSize=${pageSize}`);
+  }
+
+  getHistories(userId: number, page: number, pageSize: number): Observable<any> {
+    return this.http.get(`${this.baseUrl}/GetHistoryTestsByUserId?userId=${userId}&page=${page}&pageSize=${pageSize}`);
   }
 
   // getAllTests(keyword: string, page: number, pageSize: number): Observable<any> {
@@ -21,6 +25,9 @@ export class TestService {
   // getTestById(id: any): Observable<any> {
   //   return this.http.get(`${this.baseUrl}/${id}`);
   // }
+  getTestDetailById(id: any): Observable<any> {
+    return this.http.get(`${this.baseUrl}/getTestDetailById?id=${id}`);
+  }
 
   createTest(test: any) {
     return this.http.post('https://localhost:44386/api/Test', test);

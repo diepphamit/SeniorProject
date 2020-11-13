@@ -12,6 +12,7 @@ export class HomeComponent implements OnInit {
 
   topicsAsync: Observable<any[]>;
   flashcardsAsync: Observable<any[]>;
+  falshcardHome: Observable<any>;
 
   constructor(
     private topicService: TopicService,
@@ -21,6 +22,7 @@ export class HomeComponent implements OnInit {
 
     this.getAllFlashcard();
     this.getAllTopic();
+    this.getFlashcardHome();
   }
 
   getAllTopic() {
@@ -35,6 +37,10 @@ export class HomeComponent implements OnInit {
     .pipe(
       map(response => response.items)
     );
+  }
+
+  getFlashcardHome() {
+    this.flashcardService.getFlashcardHome().subscribe(data => this.falshcardHome = data);
   }
 
 }

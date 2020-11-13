@@ -87,8 +87,6 @@ export class AddImageComponent implements OnInit {
         console.log(droppedFile.relativePath, fileEntry);
       }
     }
-
-
   }
 
   public fileOver(event) {
