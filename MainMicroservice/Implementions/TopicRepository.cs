@@ -112,7 +112,7 @@ namespace MainMicroservice.Implementions
         public IEnumerable<Topic> GetPopularTopics()
         {
             Random rnd = new Random();
-            return _context.Topics.ToList().OrderBy(x => rnd.Next()).Take(6).AsEnumerable();
+            return _context.Topics.Where(x => x.Id != 1).ToList().OrderBy(x => rnd.Next()).Take(6).AsEnumerable();
         }
 
         public async Task<Topic> GetTopicByIdAsync(int id)

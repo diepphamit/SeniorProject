@@ -14,6 +14,7 @@ export class DetailTestComponent implements OnInit {
 
   test: any;
   id: any;
+  count = 0;
 
   constructor(private testService: TestService, private route: ActivatedRoute) {
   }
@@ -40,8 +41,8 @@ export class DetailTestComponent implements OnInit {
   }
 
 
-  getColor(myAnswer, flashcardId, answerNumber, count) {
-    if (count !== 0) {
+  getColor(myAnswer, flashcardId, answerNumber) {
+
       if (answerNumber === flashcardId) {
         return 'green';
       }
@@ -50,10 +51,8 @@ export class DetailTestComponent implements OnInit {
         return 'red';
       }
 
-      return 'black';
-    }
+      return '#00f7ee';
 
-    return 'black';
   }
 
 }

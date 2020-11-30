@@ -1,0 +1,32 @@
+import { Injectable } from '@angular/core';
+import { environment } from 'src/environments/environment';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+
+@Injectable()
+export class UserFlashcardService {
+  baseUrl = environment.apiUrl + 'userFlashcard';
+
+  constructor(private http: HttpClient) {
+  }
+
+  // getAllUsers(keyword: string, page: number, pageSize: number): Observable<any> {
+  //   return this.http.get(`${this.baseUrl}?keyword=${keyword}&page=${page}&pageSize=${pageSize}`);
+  // }
+
+  // getUserById(id: any): Observable<any> {
+  //   return this.http.get(`${this.baseUrl}/${id}`);
+  // }
+
+  createUserFlashcard(userFlashcard: any) {
+    return this.http.post(this.baseUrl, userFlashcard);
+  }
+
+  // editUser(id: any, user: any) {
+  //   return this.http.put(`${this.baseUrl}/${id}`, user);
+  // }
+
+  deleteUserFlashcard(id: any) {
+    return this.http.delete(`${this.baseUrl}/${id}`);
+  }
+}

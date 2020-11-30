@@ -1,44 +1,44 @@
 {
   "Routes": [
     {
-      "DownstreamPathTemplate": "/api/auth/login",
-      "DownstreamScheme": "https",
+      "DownstreamPathTemplate": "/api/auth/{everything}",
+      "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
-          "Port": 5001
+          "Host": "auth-service",
+          "Port": 80
         }
       ],
-      "UpstreamPathTemplate": "/api/auth/login",
+      "UpstreamPathTemplate": "/api/auth/{everything}",
       "UpstreamHttpMethod": [
         "POST"
       ]
     },
-    {
-      "DownstreamPathTemplate": "/api/auth",
-      "DownstreamScheme": "https",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "localhost",
-          "Port": 5001
-        }
-      ],
-      "UpstreamPathTemplate": "/api/auth",
-      "UpstreamHttpMethod": [
-        "GET"
-      ],
-      "AuthenticationOptions": {
-        "AuthenticationProviderKey": "Bearer",
-        "AllowedScopes": []
-      }
-    },
+    //{
+    //  "DownstreamPathTemplate": "/api/auth",
+    //  "DownstreamScheme": "https",
+    //  "DownstreamHostAndPorts": [
+    //    {
+    //      "Host": "localhost",
+    //      "Port": 5001
+    //    }
+    //  ],
+    //  "UpstreamPathTemplate": "/api/auth",
+    //  "UpstreamHttpMethod": [
+    //    "GET"
+    //  ],
+    //  "AuthenticationOptions": {
+    //    "AuthenticationProviderKey": "Bearer",
+    //    "AllowedScopes": []
+    //  }
+    //},
     {
       "DownstreamPathTemplate": "/chatbot",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
-          "Port": 3001
+          "Host": "ai-service",
+          "Port": 80
         }
       ],
       "UpstreamPathTemplate": "/api/chatbot",
@@ -51,13 +51,44 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
-          "Port": 3001
+          "Host": "ai-service",
+          "Port": 80
         }
       ],
-      "UpstreamPathTemplate": "/api/classification",
+      "UpstreamPathTemplate": "/api/image",
       "UpstreamHttpMethod": [
         "POST"
+      ]
+    },
+    //{
+    //  "DownstreamPathTemplate": "/image",
+    //  "DownstreamScheme": "http",
+    //  "DownstreamHostAndPorts": [
+    //    {
+    //      "Host": "localhost",
+    //      "Port": 3001
+    //    }
+    //  ],
+    //  "UpstreamPathTemplate": "/api/classification",
+    //  "UpstreamHttpMethod": [
+    //    "POST"
+    //  ]
+    //}
+    {
+      "DownstreamPathTemplate": "/api/{everything}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "main-service",
+          "Port": 80
+        }
+      ],
+      "UpstreamPathTemplate": "/api/{everything}",
+      "UpstreamHttpMethod": [
+        "GET",
+        "POST",
+        "PUT",
+        "DELETE"
       ]
     }
   ],

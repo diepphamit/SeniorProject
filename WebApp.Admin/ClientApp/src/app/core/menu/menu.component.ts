@@ -22,14 +22,14 @@ export class MenuComponent implements OnInit {
     return '';
   }
 
-  // get getId() {
-  //   const user = JSON.parse(localStorage.getItem(CURRENT_USER));
-  //   if (user != null) {
-  //     return user.id;
-  //   }
+  get getId() {
+    const user = JSON.parse(localStorage.getItem(CURRENT_USER));
+    if (user != null) {
+      return user.id;
+    }
 
-  //   return 0;
-  // }
+    return 0;
+  }
 
   // get isAdmin() {
   //   const user = JSON.parse(localStorage.getItem(CURRENT_USER));

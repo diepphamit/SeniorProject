@@ -65,7 +65,7 @@ namespace WebApp.Admin
 
                 spa.Options.SourcePath = "ClientApp";
 
-                if (env.IsDevelopment())
+                if (env.IsDevelopment() || env.IsProduction())
                 {
                     spa.UseAngularCliServer(npmScript: "start");
                 }

@@ -36,7 +36,7 @@
                       </figure>
                       <div class="mu-latest-course-single-content">
                         <h3><a routerLink="/flashcard/topic/{{item.id}}">{{item.name}}</a></h3>
-                        <p style="height: 100px;">{{item.content}}</p>
+                        <p style="height: 100px;">{{ (item.content.length>200)? (item.content | slice:0:200)+'...' : (item.content)}}</p>
                         <div class="mu-latest-course-single-contbottom">
                           <a class="mu-course-details" routerLink="/flashcard/topic/{{item.id}}">Details</a>
                           <!-- <span class="mu-course-price" href="#">$165.00</span> -->

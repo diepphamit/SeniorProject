@@ -23,15 +23,18 @@ namespace MainMicroservice.Controllers
     public class FlashcardController : ControllerBase
     {
         private readonly IFlashcardRepository _flashcardRepository;
+        private readonly IUserFlashcardRepository _userFlashcardRepository;
         private readonly IMapper _mapper;
 
         public FlashcardController(
             IFlashcardRepository flashcardRepository,
-            IMapper mapper
+            IMapper mapper,
+            IUserFlashcardRepository userFlashcardRepository
         )
         {
             _flashcardRepository = flashcardRepository;
             _mapper = mapper;
+            _userFlashcardRepository = userFlashcardRepository;
         }
 
         [HttpGet]
@@ -64,7 +67,7 @@ namespace MainMicroservice.Controllers
         }
 
         [HttpGet("GetFlashcardsByTopicId")]
-        public IActionResult GetFlashcardsByTopicId(int topicId, int page = 1, int pageSize = 10)
+        public IActionResult GetFlashcardsByTopicId(int topicId,int userId, int page = 1, int pageSize = 10)
         {
             try
             {
@@ -77,6 +80,15 @@ namespace MainMicroservice.Controllers
 
                 var query = flashcards.OrderByDescending(x => x.Id).Skip((page - 1) * pageSize).Take(pageSize);
                 var response = _mapper.Map<IEnumerable<Flashcard>, IEnumerable<FlashcardForReturn>>(query);
+
+                foreach (var item in response)
+                {
+                    if (_userFlashcardRepository.GetUserFlashcardByUserIdAndFlashcardIdAsync(userId, item.Id))
+                    {
+                        item.hasUser = true;
+                    }
+                    else item.hasUser = false;
+                }
 
                 var paginationSet = new PaginationSet<FlashcardForReturn>()
                 {
@@ -131,6 +143,16 @@ namespace MainMicroservice.Controllers
             return Ok(flashcard);
         }
 
+        [HttpGet("GetPopularFlashcards")]
+        public IActionResult GetPopularFlashcards()
+        {
+            var flashcards =  _flashcardRepository.GetPopularFlashcards();
+            if (flashcards == null)
+                return NotFound();
+
+            return Ok(_mapper.Map<IEnumerable<Flashcard>, IEnumerable<FlashcardForReturn>>(flashcards));
+        }
+
         [HttpGet("{id}")]
         public async Task<IActionResult> GetFlashcardById(int id)
         {
@@ -182,7 +204,8 @@ namespace MainMicroservice.Controllers
                 }, "File", "FILES");
 
                 HttpClient client = new HttpClient();
-                HttpResponseMessage response = await client.PostAsync("http://localhost:8000/image", content);
+                HttpResponseMessage response = await client.PostAsync("http://ai-service/image", content);
+                //HttpResponseMessage response = await client.PostAsync("http://localhost:8000/image", content);
                 response.EnsureSuccessStatusCode();
                 var responseBody = await response.Content.ReadAsStringAsync();
 
@@ -221,7 +244,7 @@ namespace MainMicroservice.Controllers
         }
 
         [HttpPost("CreateFlashcardByUserId")]
-        public async Task<IActionResult> CreateFlashcardAI([FromForm] FlashcardForCreateByUserId flashcardForCreate)
+        public async Task<IActionResult> CreateFlashcardByUserId([FromForm] FlashcardForCreateByUserId flashcardForCreate)
         {
             var result = await _flashcardRepository.CreateFlashcardByUserIdAsync(flashcardForCreate, flashcardForCreate.UserId);
 

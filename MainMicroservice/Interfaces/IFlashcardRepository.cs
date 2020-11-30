@@ -10,6 +10,7 @@ namespace MainMicroservice.Interfaces
     public interface IFlashcardRepository
     {
         IEnumerable<Flashcard> GetAllFlashcards(string keyword);
+        IEnumerable<Flashcard> GetPopularFlashcards();
         IEnumerable<Flashcard> GetAllFlashcardsByTopicId(int topicId);
         IEnumerable<Flashcard> GetAllFlashcardsByUserId(int userId);
         Task<FlashcardHomeForReturn> GetFlashcardHomeAsync();

@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 
 @Injectable()
 export class FlashcardService {
-  baseUrl = 'https://localhost:44386/api/' + 'flashcard';
+  baseUrl = environment.apiUrl + 'flashcard';
 
   constructor(private http: HttpClient) {
   }
@@ -18,12 +18,16 @@ export class FlashcardService {
     return this.http.get(`${this.baseUrl}/${id}`);
   }
 
+  getPopularFlashcards(): Observable<any> {
+    return this.http.get(`${this.baseUrl}/GetPopularFlashcards`);
+  }
+
   getFlashcardHome(): Observable<any> {
     return this.http.get(`${this.baseUrl}/GetFlashcardHome`);
   }
 
-  getFlashcardsByTopicId(topicId: number, page: number, pageSize: number): Observable<any> {
-    return this.http.get(`${this.baseUrl}/GetFlashcardsByTopicId?topicId=${topicId}&page=${page}&pageSize=${pageSize}`);
+  getFlashcardsByTopicId(topicId: number, userId: number, page: number, pageSize: number): Observable<any> {
+    return this.http.get(`${this.baseUrl}/GetFlashcardsByTopicId?topicId=${topicId}&userId=${userId}&page=${page}&pageSize=${pageSize}`);
   }
 
   getFlashcardsByUserId(userId: number, page: number, pageSize: number): Observable<any> {
@@ -34,7 +38,8 @@ export class FlashcardService {
     const formData = new FormData();
     formData.append('image', flashcard.file, flashcard.file.name);
     formData.append('userId', flashcard.userId);
-    return this.http.post('https://localhost:44386/api/flashcard/CreateFlashcardAI', formData);
+    // return this.http.post(`${this.baseUrl}/CreateFlashcardAI`, formData);
+    return this.http.post('http://localhost:5002/api/flashcard/CreateFlashcardAI', formData);
   }
 
   createFlashcardByUser(flashcard) {
@@ -48,7 +53,7 @@ export class FlashcardService {
     formData.append('example', flashcard.example);
     formData.append('type', flashcard.type);
     formData.append('pronunciationLink', flashcard.pronunciationLink);
-    return this.http.post('https://localhost:44386/api/flashcard/CreateFlashcardByUserId', formData);
+    return this.http.post(`${this.baseUrl}/CreateFlashcardByUserId`, formData);
   }
 
   // createFlashcard(flashcard: any) {

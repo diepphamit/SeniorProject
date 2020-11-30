@@ -53,6 +53,7 @@ export class TestComponent implements OnInit {
       createAt: new Date(),
       testDetails: this.dataTest
     };
+
     this.testService.createTest(testForCreate).subscribe(data => {
       this.dataTest = data['data']['testDetails'];
       this.score = data['data']['score'];
@@ -85,10 +86,10 @@ export class TestComponent implements OnInit {
         return 'red';
       }
 
-      return 'black';
+      return '#cae9e8';
     }
 
-    return 'black';
+    return '#cae9e8';
   }
 
 }

@@ -33,5 +33,3 @@ C:\Users\DAVID-DIEP\source\repos\SeniorProject\OcelotApigateway\bin\Debug\netcor
 C:\Users\DAVID-DIEP\source\repos\SeniorProject\OcelotApigateway\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
 C:\Users\DAVID-DIEP\source\repos\SeniorProject\OcelotApigateway\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Tokens.dll
 C:\Users\DAVID-DIEP\source\repos\SeniorProject\OcelotApigateway\bin\Debug\netcoreapp3.1\System.IdentityModel.Tokens.Jwt.dll
-C:\Users\DAVID-DIEP\source\repos\SeniorProject\OcelotApigateway\obj\Debug\netcoreapp3.1\OcelotApigateway.MvcApplicationPartsAssemblyInfo.cs
-C:\Users\DAVID-DIEP\source\repos\SeniorProject\OcelotApigateway\obj\Debug\netcoreapp3.1\OcelotApigateway.MvcApplicationPartsAssemblyInfo.cache

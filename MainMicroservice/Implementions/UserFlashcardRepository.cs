@@ -97,6 +97,13 @@ namespace MainMicroservice.Implementions
             return await _context.UserFlashcards.FirstOrDefaultAsync(x => x.Id == id);
         }
 
+        public bool GetUserFlashcardByUserIdAndFlashcardIdAsync(int userId, int flashcardId)
+        {
+            var result = _context.UserFlashcards.FirstOrDefault(x => x.FlashcardId == flashcardId && x.UserId == userId);
+
+            return result != null;
+        }
+
         public async Task<bool> UpdateUserFlashcardAsync(int id, UserFlashcardForUpdate userFlashcardForUpdate)
         {
             var userFlashcard = await GetUserFlashcardByIdAsync(id);

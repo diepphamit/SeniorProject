@@ -58,13 +58,13 @@
       </button>
       <!-- LOGO -->
       <!-- TEXT BASED LOGO -->
-      <a class="navbar-brand" [routerLink]="['/']"><i class="fa fa-university"></i><span>Flashcard</span></a>
+      <a (click) = "changeActive(0)"  class="navbar-brand" [routerLink]="['/']"><i  class="fa fa-university"></i><span>Flashcard</span></a>
       <!-- IMG BASED LOGO  -->
       <!-- <a class="navbar-brand" href="index.html"><img src="assets/img/logo.png" alt="logo"></a> -->
     </div>
     <div id="navbar" class="navbar-collapse collapse">
       <ul id="top-menu" class="nav navbar-nav navbar-right main-nav">
-        <li class="active"><a [routerLink]="['/']">Home</a></li>
+        <li (click) = "changeActive(0)" class="{{active[0]['value'] == 1 ? 'active' : ''}}"><a [routerLink]="['/']">Home</a></li>
         <!-- <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">Course <span class="fa fa-angle-down"></span></a>
           <ul class="dropdown-menu" role="menu">
@@ -72,21 +72,20 @@
             <li><a href="course-detail.html">Course Detail</a></li>
           </ul>
         </li> -->
-        <li><a [routerLink]="['/topic']">Topic</a></li>
-        <li><a [routerLink]="['/Home']">Translation</a></li>
-        <li *ngIf="isUser"><a routerLink="/test/{{getuserId}}">Test</a></li>
-        <li *ngIf="isUser" class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{name}} <span class="fa fa-angle-down"></span></a>
+        <li (click) = "changeActive(1)" class="{{active[1]['value'] == 1 ? 'active' : ''}}"><a [routerLink]="['/topic']">Topic</a></li>
+        <li (click) = "changeActive(2)" class="{{active[2]['value'] == 1 ? 'active' : ''}}" *ngIf="isUser"><a routerLink="/test/{{getuserId}}">Quiz</a></li>
+        <li (click) = "changeActive(3)" class="{{active[3]['value'] == 1 ? 'active' : ''}}" *ngIf="isUser" class="dropdown">
+          <a  class="dropdown-toggle" data-toggle="dropdown">{{name}} <span class="fa fa-angle-down"></span></a>
           <ul class="dropdown-menu" role="menu">
-            <li><a routerLink="/profile/{{getuserId}}">My Profile</a></li>
-            <li><a routerLink="/flashcard/myflashcard">My Flashcard</a></li>
-            <li><a routerLink="/flashcard/add">Create Flashcard</a></li>
-            <li><a routerLink="/test/history/view">History Test</a></li>
-            <li><a style = "cursor: pointer;" (click)="logout()">Logout</a></li>
+            <li (click) = "changeActive(3)"><a routerLink="/profile/{{getuserId}}">My Profile</a></li>
+            <li (click) = "changeActive(3)"><a routerLink="/flashcard/myflashcard">My Flashcard</a></li>
+            <li (click) = "changeActive(3)"><a routerLink="/flashcard/add">Create Flashcard</a></li>
+            <li (click) = "changeActive(3)"><a routerLink="/test/history/view">History Quiz</a></li>
+            <li (click) = "changeActive(3)"><a style = "cursor: pointer;" (click)="logout()">Logout</a></li>
           </ul>
         </li>
-        <li *ngIf="!isUser"><a [routerLink]="['/register']">Sign Up</a></li>
-        <li *ngIf="!isUser"><a [routerLink]="['/login']">Sign In</a></li>
+        <li (click) = "changeActive(4)" class="{{active[4]['value'] == 1 ? 'active' : ''}}" *ngIf="!isUser"><a [routerLink]="['/register']">Sign Up</a></li>
+        <li (click) = "changeActive(5)" class="{{active[5]['value'] == 1 ? 'active' : ''}}" *ngIf="!isUser"><a [routerLink]="['/login']">Sign In</a></li>
         <!-- <li><a href="404.html">404 Page</a></li> -->
         <!-- <li><a  id="mu-search-icon"><i class="fa fa-search"></i></a></li> -->
       </ul>

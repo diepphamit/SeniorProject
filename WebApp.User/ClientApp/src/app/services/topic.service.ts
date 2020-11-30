@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 
 @Injectable()
 export class TopicService {
-  baseUrl = 'https://localhost:44386/api/' + 'topic';
+  baseUrl = environment.apiUrl + 'topic';
 
   constructor(private http: HttpClient) {
   }

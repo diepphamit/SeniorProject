@@ -5,12 +5,12 @@ import { Observable } from 'rxjs';
 
 @Injectable()
 export class ChatbotService {
-  baseUrl = 'http://localhost:8000/chatbot';
+  baseUrl =  environment.apiUrl + 'chatbot';
 
   constructor(private http: HttpClient) {
   }
 
   createChatbot(chatbot: any) {
-    return this.http.post(this.baseUrl, chatbot);
+    return this.http.post('http://localhost:5002/api/chatbot', chatbot);
   }
 }

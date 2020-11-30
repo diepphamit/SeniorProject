@@ -6,7 +6,9 @@
         <div class="mu-page-breadcrumb-area">
           <h2>Topic</h2>
           <ol class="breadcrumb">
-            <li *ngIf  = "topic != null" class="active"><h2>{{topic.name}}</h2></li>
+            <li *ngIf="topic != null" class="active">
+              <h2>{{topic.name}}</h2>
+            </li>
           </ol>
         </div>
       </div>
@@ -24,48 +26,66 @@
               <!-- start course content container -->
               <div class="mu-course-container">
                 <div class="row">
-                  <div class="col-lg-3 col-md-3  col-sm-6"
+                  <div class="col-lg-4 col-md-4  col-sm-6"
                     *ngFor="let item of flashcardsAsync | async | paginate: { itemsPerPage: pageSize, currentPage: page, totalItems: total }">
-
 
                     <div class="mu-our-teacher-single">
                       <figure class="mu-our-teacher-img">
-                        <img src="{{item.images[0].imageUrl}}" style ="width: 260px; height: 265;" alt="teacher img">
-                        <div class="mu-our-teacher-social">
-                          <a href="#"><span class="fa fa-facebook"></span></a>
-                          <a href="#"><span class="fa fa-twitter"></span></a>
-                          <a href="#"><span class="fa fa-linkedin"></span></a>
-                          <a href="#"><span class="fa fa-google-plus"></span></a>
+                        <div class="flip-card">
+                          <div class="flip-card-inner">
+                            <div class="flip-card-front">
+                              <img src="{{item.images[0].imageUrl}}" alt="Avatar" style="width:260px;height:265px;">
+                            </div>
+                            <div class="flip-card-back">
+                              <h1>{{item.word | titlecase}}</h1>
+                              <p>{{item.meaning }}</p>
+                              <p>Example: {{item.example}}</p>
+                            </div>
+                          </div>
                         </div>
                       </figure>
-                      <div class="mu-ourteacher-single-content">
-                        <h4>{{item.word}}</h4>
-                        <span>Math Teacher</span>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique quod pariatur recusandae odio
-                          dignissimos. Eligendi.</p>
+                      <div class="mu-ourteacher-single-content" style="padding-bottom: 50px;">
+                        <div class="row">
+                          <div class="col-sm-5">
+                            <h4>{{item.word | titlecase}}</h4>
+                          </div>
+                          <div *ngIf="getUser == null" class="col-sm-2 mr-auto"></div>
+                          <div class="col-sm-2 mr-auto">
+
+                            <a (click) = "playAudio(item.pronunciations[0]?.link)" style="cursor: pointer; "><img style="width: 30px;
+                              height: 30px;
+                              margin-top: 5px;" src="./../../../assets//img//slider//speaker1.svg" alt="teacher img">
+
+                            </a>
+                            <!-- <h4 style="text-align: right;">Loa</h4> -->
+                          </div>
+
+                          <div *ngIf="!item.hasUser && getUser" class="col-sm-2 ml-auto">
+                            <a  style="cursor: pointer; " (click)="addFavoriteFlashcard(item.id)"><img style="width: 30px;
+                            height: 30px;
+                            margin-top: 5px;" src="./../../../assets//img/heart_black.svg" alt="teacher img">
+
+                            </a>
+                          </div>
+                          <div *ngIf="item.hasUser && getUser" class="col-sm-2 ml-auto">
+                            <a  style="cursor: pointer; " (click)="removeFavoriteFlashcard(item.id)"><img style="width: 30px;
+                              height: 30px;
+                              margin-top: 5px;" src="./../../../assets//img/heart_red.svg" alt="teacher img">
+
+                              </a>
+                          </div>
+
+                        </div>
+                        <!-- <p style="text-align: right;">Bp</p> -->
+                        <span>Phonetic: {{item.pronunciations[0]?.phonetic || "null"}}</span>
                       </div>
                     </div>
-                    </div>
-
+                  </div>
                 </div>
                 <div class="text-center">
                   <pagination-controls class="custom-pagination" (pageChange)="getFlashcardsByTopicId($event)"
                     autoHide="true" responsive="true" previousLabel="Trước" nextLabel="Sau" directionLinks="true">
                   </pagination-controls>
-                </div>
-                <div class="col-lg-3 col-md-3  col-sm-6">
-                  <div class="flip-card">
-                    <div class="flip-card-inner">
-                      <div class="flip-card-front">
-                        <img src="assets/img/teachers/teacher-01.png" alt="Avatar" style="width:260px;height:265px;">
-                      </div>
-                      <div class="flip-card-back">
-                        <h1>John Doe</h1>
-                        <p>Architect & Engineer</p>
-                        <p>We love that guy</p>
-                      </div>
-                    </div>
-                  </div>
                 </div>
               </div>
             </div>

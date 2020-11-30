@@ -19,6 +19,7 @@ import { ValidationService } from './services/validation.service';
 import { TopicService } from './services/topic.service';
 import { FlashcardService } from './services/flashcard.service';
 import { UserService } from './services/user.service';
+import { UserFlashcardService } from './services/user-flashcard.service';
 
 export function tokenGetter() {
   return localStorage.getItem(ACCESS_TOKEN);
@@ -61,7 +62,8 @@ export function tokenGetter() {
     ValidationService,
     TopicService,
     FlashcardService,
-    UserService
+    UserService,
+    UserFlashcardService
   ],
   bootstrap: [AppComponent]
 })

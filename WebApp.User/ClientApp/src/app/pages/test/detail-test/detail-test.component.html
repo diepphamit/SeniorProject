@@ -1,4 +1,4 @@
-<div *ngIf="test" class="container">
+<!-- <div *ngIf="test" class="container">
     <ul *ngFor="let item of test.testDetails; index as i;">
       <p>Q.{{i +1}} What is mean of {{item.word}}</p>
       <li [style.color]="getColor(item.myAnswer, item.flashcardId, item.answer1, count)">
@@ -17,7 +17,66 @@
         <input type="radio" disabled [checked]="item.myAnswer == item.answer4" name="{{item.flashcardId}}"
           (click)="addMyAnswer(item.flashcardId, item.answer4)" />{{item.answer4Meaning}}
       </li>
-      <!-- <p>Answer: {{item.flashcardId}}</p> -->
     </ul>
     <p >Score: {{test.score}}</p>
+</div> -->
+
+<!-- <div class="container">
+  <form (submit)="addTest()">
+    <ul *ngFor="let item of dataTest; index as i;">
+      <p>Q.{{i +1}} What is mean of {{item.word}}</p>
+      <li [style.color]="getColor(item.myAnswer, item.flashcardId, item.answer1, count)">
+        <input type="radio" [checked]="item.myAnswer == item.answer1" name="{{item.flashcardId}}"
+          (click)="addMyAnswer(item.flashcardId, item.answer1)" />{{item.answer1Meaning}}
+      </li>
+      <li [style.color]="getColor(item.myAnswer, item.flashcardId, item.answer2, count)">
+        <input type="radio" [checked]="item.myAnswer == item.answer2" name="{{item.flashcardId}}"
+          (click)="addMyAnswer(item.flashcardId, item.answer2)" />{{item.answer2Meaning}}
+      </li>
+      <li [style.color]="getColor(item.myAnswer, item.flashcardId, item.answer3, count)">
+        <input type="radio" [checked]="item.myAnswer == item.answer3" name="{{item.flashcardId}}"
+          (click)="addMyAnswer(item.flashcardId, item.answer3)" />{{item.answer3Meaning}}
+      </li>
+      <li [style.color]="getColor(item.myAnswer, item.flashcardId, item.answer4, count)">
+        <input type="radio" [checked]="item.myAnswer == item.answer4" name="{{item.flashcardId}}"
+          (click)="addMyAnswer(item.flashcardId, item.answer4)" />{{item.answer4Meaning}}
+      </li>
+    </ul>
+    <p *ngIf="score != -1">{{score}}</p>
+    <input type="submit" value="Submit" />
+  </form>
+</div> -->
+
+
+<div *ngIf = "test" class="container">
+  <div id="quiz">
+    <h1 id="quiz-name" style="text-align: center;">Test History</h1>
+
+    <div id="question">
+      <form >
+        <p *ngIf="test.score != -1" id="quiz-results-score">You got <b>{{test.score}}</b> points.</p>
+        <div *ngFor="let item of test.testDetails; index as i;">
+          <h2>Q.{{i +1}} What does the word "{{item.word | titlecase}}" mean?</h2>
+          <input id="{{i}}1" type="radio" [checked]="item.myAnswer == item.answer1" name="{{item.flashcardId}}"
+            >
+          <label [style.background]="getColor(item.myAnswer, item.flashcardId, item.answer1)"  for="{{i}}1">{{item.answer1Meaning}} </label>
+
+          <input id="{{i}}2" type="radio" [checked]="item.myAnswer == item.answer2" name="{{item.flashcardId}}"
+            >
+          <label [style.background]="getColor(item.myAnswer, item.flashcardId, item.answer2)"  for="{{i}}2">{{item.answer2Meaning}}</label>
+
+          <input id="{{i}}3" type="radio" [checked]="item.myAnswer == item.answer3" name="{{item.flashcardId}}"
+            >
+          <label [style.background]="getColor(item.myAnswer, item.flashcardId, item.answer3)" for="{{i}}3">{{item.answer3Meaning}}</label>
+
+          <input id="{{i}}4" type="radio" [checked]="item.myAnswer == item.answer4" name="{{item.flashcardId}}"
+            >
+          <label [style.background]="getColor(item.myAnswer, item.flashcardId, item.answer4)" for="{{i}}4">{{item.answer4Meaning}}</label>
+
+          <p style="padding-bottom: 50px;"></p>
+        </div>
+      </form>
+    </div>
+  </div>
 </div>
+

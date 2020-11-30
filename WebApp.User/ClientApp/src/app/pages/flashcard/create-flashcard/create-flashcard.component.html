@@ -50,13 +50,13 @@
                 </div>
 
                 <div class="form-group">
-                  <label>Đường dẫn</label>
+                  <label>Path</label>
                   <!-- <input type="text" class="form-control" formControlName="imageUrl" placeholder="Đường dẫn"
                     [ngClass]="{ 'is-invalid': f.imageUrl.errors }"> -->
                   <ngx-file-drop dropZoneLabel="Drop files here" (onFileDrop)="dropped1($event)"
                     (onFileOver)="fileOver($event)" (onFileLeave)="fileLeave($event)">
                     <ng-template ngx-file-drop-content-tmp let-openFileSelector="openFileSelector">
-                      Thả hình ảnh vào đây
+                      Drop the image here
                       <button type="button" (click)="openFileSelector()">Browse Files</button>
                     </ng-template>
                   </ngx-file-drop>
@@ -92,15 +92,15 @@
     </section>
       <section id="rauchbier" class="tab-panel">
         <h2 style="text-align: center;">Create Flashcard by AI</h2>
-        <div class="col-sm-3">
+        <div class="col-sm-6">
           <div class="form-group">
-            <label>Đường dẫn</label>
+            <label>Path</label>
             <!-- <input type="text" class="form-control" formControlName="imageUrl" placeholder="Đường dẫn"
               [ngClass]="{ 'is-invalid': f.imageUrl.errors }"> -->
             <ngx-file-drop dropZoneLabel="Drop files here" (onFileDrop)="dropped($event)"
               (onFileOver)="fileOver($event)" (onFileLeave)="fileLeave($event)">
               <ng-template ngx-file-drop-content-tmp let-openFileSelector="openFileSelector">
-                Thả hình ảnh vào đây
+                Drop the image here
                 <button type="button" (click)="openFileSelector()">Browse Files</button>
               </ng-template>
             </ngx-file-drop>

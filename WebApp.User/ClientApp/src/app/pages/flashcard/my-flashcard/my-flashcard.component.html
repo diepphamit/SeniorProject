@@ -24,28 +24,51 @@
               <!-- start course content container -->
               <div class="mu-course-container">
                 <div class="row">
-                  <div class="col-lg-3 col-md-3  col-sm-6"
+                  <div class="col-lg-4 col-md-4  col-sm-6"
                     *ngFor="let item of flashcardsAsync | async | paginate: { itemsPerPage: pageSize, currentPage: page, totalItems: total }">
-
 
                     <div class="mu-our-teacher-single">
                       <figure class="mu-our-teacher-img">
-                        <img src="assets/img/teachers/teacher-01.png" alt="teacher img">
-                        <div class="mu-our-teacher-social">
-                          <a href="#"><span class="fa fa-facebook"></span></a>
-                          <a href="#"><span class="fa fa-twitter"></span></a>
-                          <a href="#"><span class="fa fa-linkedin"></span></a>
-                          <a href="#"><span class="fa fa-google-plus"></span></a>
+                        <div class="flip-card">
+                          <div class="flip-card-inner">
+                            <div class="flip-card-front">
+                              <img src="{{item.images[0].imageUrl}}" alt="Avatar" style="width:260px;height:265px;">
+                            </div>
+                            <div class="flip-card-back">
+                              <h1>{{item.word | titlecase}}</h1>
+                              <p>{{item.meaning }}</p>
+                              <p>Example: {{item.example}}</p>
+                            </div>
+                          </div>
                         </div>
                       </figure>
-                      <div class="mu-ourteacher-single-content">
-                        <h4>{{item.word}}</h4>
-                        <span>Math Teacher</span>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique quod pariatur recusandae odio
-                          dignissimos. Eligendi.</p>
+                      <div class="mu-ourteacher-single-content" style="padding-bottom: 50px;">
+                        <div class="row">
+                          <div class="col-sm-5">
+                            <h4>{{item.word | titlecase}}</h4>
+                          </div>
+                          <div class="col-sm-2 mr-auto">
+
+                            <a (click) = "playAudio(item.pronunciations[0]?.link)" style="cursor: pointer; "><img style="width: 30px;
+                              height: 30px;
+                              margin-top: 5px;" src="./../../../assets//img//slider//speaker1.svg" alt="teacher img">
+
+                            </a>
+                            <!-- <h4 style="text-align: right;">Loa</h4> -->
+                          </div>
+                          <div class="col-sm-2 ml-auto">
+                            <a style="cursor: pointer; " (click) ="deleteUSerFlashcard(item.id, item.userFlashcards)"><img style="width: 30px;
+                            height: 30px;
+                            margin-top: 5px;" src="./../../../assets//img/delete.svg" alt="teacher img">
+
+                            </a>
+                          </div>
+                        </div>
+                        <!-- <p style="text-align: right;">Bp</p> -->
+                        <span>Phonetic: {{item.pronunciations[0]?.phonetic || "null"}}</span>
                       </div>
                     </div>
-                    </div>
+                  </div>
 
                 </div>
                 <div class="text-center">

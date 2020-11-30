@@ -8,6 +8,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { CreateFlashcardComponent } from './create-flashcard/create-flashcard.component';
 import { NgxFileDropModule } from 'ngx-file-drop';
 import { MyFlashcardComponent } from './my-flashcard/my-flashcard.component';
+import { AddFavoriteFlashcardComponent } from './add-favorite-flashcard/add-favorite-flashcard.component';
 
 @NgModule({
   imports: [
@@ -22,7 +23,8 @@ import { MyFlashcardComponent } from './my-flashcard/my-flashcard.component';
   declarations: [
     FlashcardComponent,
     CreateFlashcardComponent,
-    MyFlashcardComponent
+    MyFlashcardComponent,
+    AddFavoriteFlashcardComponent
   ]
 })
 export class FlashcardModule { }

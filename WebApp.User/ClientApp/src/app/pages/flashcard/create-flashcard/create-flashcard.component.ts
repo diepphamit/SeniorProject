@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { FileSystemDirectoryEntry, FileSystemFileEntry, NgxFileDropEntry } from 'ngx-file-drop';
 import { CURRENT_USER } from 'src/app/constants/db-keys';
 import { FlashcardService } from 'src/app/services/flashcard.service';
@@ -19,7 +20,7 @@ export class CreateFlashcardComponent implements OnInit {
   public flashcardForUser: FlashcardForCreateByUser = new FlashcardForCreateByUser();
   createFlashcardForm: FormGroup;
 
-  constructor(private flashcardService: FlashcardService, private fb: FormBuilder) { }
+  constructor(private flashcardService: FlashcardService, private fb: FormBuilder, private router: Router) { }
 
   ngOnInit() {
     this.createFlashcardForm = this.fb.group({
@@ -60,7 +61,11 @@ export class CreateFlashcardComponent implements OnInit {
           //  this.upload.file = file;
           this.flashcard.file = file;
           this.flashcard.userId = Number(this.getuserId);
-          this.flashcardService.createFlashcardByAI(this.flashcard).subscribe(data => console.log(data));
+          this.flashcardService.createFlashcardByAI(this.flashcard).subscribe(data => {
+            this.router.navigate(['/flashcard/myflashcard']).then(() => {
+              // this.toastr.success('Đăng nhập thành công!');
+            });
+          });
 
         });
       } else {

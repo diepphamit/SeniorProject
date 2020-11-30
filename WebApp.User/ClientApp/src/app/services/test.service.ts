@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 
 @Injectable()
 export class TestService {
-  baseUrl = 'https://localhost:44386/api/' + 'Test';
+  baseUrl = environment.apiUrl + 'Test';
 
   constructor(private http: HttpClient) {
   }
@@ -30,7 +30,7 @@ export class TestService {
   }
 
   createTest(test: any) {
-    return this.http.post('https://localhost:44386/api/Test', test);
+    return this.http.post(`${this.baseUrl}`, test);
   }
 
   // editTest(id: any, test: any) {

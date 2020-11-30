@@ -131,8 +131,8 @@ namespace MainMicroservice.Implementions
             try
             {
                 var flashcard = _mapper.Map<Flashcard>(flashcardForCreate);
-                flashcard.TopicId = 1;
-                flashcard.IsSystem = false;
+                flashcard.TopicId = flashcardForCreate.TopicId;
+                flashcard.IsSystem = (userId == 1);
 
                 _context.Flashcards.Add(flashcard);
 
@@ -283,6 +283,17 @@ namespace MainMicroservice.Implementions
             flashcardHome.TotalFlashcard = _context.Flashcards.ToList().Count;
 
             return flashcardHome;
+        }
+
+        public IEnumerable<Flashcard> GetPopularFlashcards()
+        {
+            Random rnd = new Random();
+
+            return _context.Flashcards.Include(x => x.Pronunciations)
+                   .Include(x => x.Images)
+                   .Include(x => x.UserFlashcards)
+                   .Include(x => x.Topic)
+                   .ToList().OrderBy(x => rnd.Next()).Take(6).AsEnumerable();
         }
 
         public async Task<bool> UpdateFlashcardAsync(int id, FlashcardForUpdate flashcardForUpdate)

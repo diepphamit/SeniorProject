@@ -11,8 +11,7 @@
       <h4>Welcome To Flashcard</h4>
       <span></span>
       <h2>We Will Help You To Learn Vocabulary</h2>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor amet error eius reiciendis eum sint unde
-        eveniet deserunt est debitis corporis temporibus recusandae accusamus.</p>
+
     </div>
   </div>
 
@@ -29,24 +28,21 @@
           <div class="mu-service-single">
             <span class="fa fa-book"></span>
             <h3>Learn Online</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima officiis, deleniti dolorem
-              exercitationem praesentium, est!</p>
+            <p>You can study anytime, anywhere with just the internet</p>
           </div>
           <!-- Start single service -->
           <!-- Start single service -->
           <div class="mu-service-single">
             <span class="fa fa-users"></span>
-            <h3>Easy To Learn</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima officiis, deleniti dolorem
-              exercitationem praesentium, est!</p>
+            <h3>Natural English</h3>
+            <p>Learning English communication system based on Natural Appoach method, helping you to develop listening and speaking ability automatically after only 6 months.</p>
           </div>
           <!-- Start single service -->
           <!-- Start single service -->
           <div class="mu-service-single">
             <span class="fa fa-table"></span>
             <h3>Best Flashcards</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima officiis, deleniti dolorem
-              exercitationem praesentium, est!</p>
+            <p>We have all the vocabulary on all topics for you to study</p>
           </div>
           <!-- Start single service -->
         </div>
@@ -70,18 +66,14 @@
                   <h2>About Us</h2>
                 </div>
                 <!-- End Title -->
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rerum pariatur fuga eveniet soluta
-                  aspernatur rem, nam voluptatibus voluptate voluptates sapiente, inventore. Voluptatem, maiores esse
-                  molestiae.</p>
+                <p>Flashcard Application is an online language education project developed by a team of English educators, online education technology specialists, and a team of young and passionate young people in Vietnam. The project is managed by Fanken Limited Liability Company, a pioneer in the development of educational projects for the community.</p>
                 <ul>
-                  <li>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</li>
-                  <li>Saepe a minima quod iste libero rerum dicta!</li>
-                  <li>Voluptas obcaecati, iste porro fugit soluta consequuntur. Veritatis?</li>
-                  <li>Ipsam deserunt numquam ad error rem unde, omnis.</li>
-                  <li>Repellat assumenda adipisci pariatur ipsam eos similique, explicabo.</li>
+                  <li>The system will start operating in 2020.</li>
+                  <li>Reliable data is aggregated from a variety of sources.</li>
+                  <li>Trial exams help remember things longer than learned.</li>
+                  <li>Parents can play with their children.</li>
+                  <li>You can study anytime, anywhere with just the internet</li>
                 </ul>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perspiciatis quaerat harum facilis
-                  excepturi et? Mollitia!</p>
               </div>
             </div>
             <div class="col-lg-6 col-md-6">
@@ -159,8 +151,7 @@
           <!-- Start Title -->
           <div class="mu-title">
             <h2>Hot Topic</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Distinctio ipsa ea maxime mollitia, vitae
-              voluptates, quod at, saepe reprehenderit totam aliquam architecto fugiat sunt animi!</p>
+            <p>These are the topics that most people follow.</p>
           </div>
           <!-- End Title -->
           <!-- Start latest course content -->
@@ -173,7 +164,7 @@
                 </figure>
                 <div class="mu-latest-course-single-content">
                   <h3><a href="#">{{item.name}}</a></h3>
-                  <p style="height: 100px;">{{item.content}}</p>
+                  <p style="height: 100px;">{{ (item.content.length>180)? (item.content | slice:0:180)+'...' : (item.content)}}</p>
                   <div class="mu-latest-course-single-contbottom">
                     <a class="mu-course-details" routerLink="/flashcard/topic/{{item.id}}">Details</a>
                     <!-- <span class="mu-course-price" href="#">$165.00</span> -->
@@ -199,202 +190,60 @@
           <!-- begain title -->
           <div class="mu-title">
             <h2>Hot Flashcard</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa, repudiandae, suscipit repellat minus
-              molestiae ea.</p>
+            <p>These are the flashcards that most people follow.
+            </p>
           </div>
           <!-- end title -->
           <!-- begain our teacher content -->
           <div class="mu-our-teacher-content">
             <div class="row">
-              <div class="col-lg-3 col-md-3  col-sm-6">
-                <div class="mu-our-teacher-single">
-                  <figure class="mu-our-teacher-img">
-                    <img src="assets/img/teachers/teacher-01.png" alt="teacher img">
-                    <!-- <div class="mu-our-teacher-social">
-                      <a href="#"><span class="fa fa-facebook"></span></a>
-                      <a href="#"><span class="fa fa-twitter"></span></a>
-                      <a href="#"><span class="fa fa-linkedin"></span></a>
-                      <a href="#"><span class="fa fa-google-plus"></span></a>
-                    </div> -->
-                  </figure>
-                  <div class="mu-ourteacher-single-content">
-                    <div class="row">
-                      <div class="col-sm-8">
-                        <h4>Brian Dean</h4>
+              <div class="col-lg-4 col-md-4  col-sm-6 "
+                    *ngFor="let item of popularFalshcards ">
+
+                    <div class="mu-our-teacher-single">
+                      <figure class="mu-our-teacher-img">
+                        <div class="flip-card">
+                          <div class="flip-card-inner">
+                            <div class="flip-card-front">
+                              <img src="{{item.images[0].imageUrl}}" alt="Avatar" style="width:260px;height:265px;">
+                            </div>
+                            <div class="flip-card-back">
+                              <h1>{{item.word | titlecase}}</h1>
+                              <p>{{item.meaning }}</p>
+                              <p>Example: {{item.example}}</p>
+                            </div>
+                          </div>
+                        </div>
+                      </figure>
+                      <div class="mu-ourteacher-single-content" style="padding-bottom: 50px;">
+                        <div class="row">
+                          <div class="col-sm-7">
+                            <h4>{{item.word | titlecase}}</h4>
+                          </div>
+                          <div class="col-sm-2 mr-auto">
+
+                            <a (click) = "playAudio(item.pronunciations[0]?.link)" style="cursor: pointer; "><img style="width: 30px;
+                              height: 30px;
+                              margin-top: 5px;" src="./../../../assets//img//slider//speaker1.svg" alt="teacher img">
+
+                            </a>
+                            <!-- <h4 style="text-align: right;">Loa</h4> -->
+                          </div>
+                          <!-- <div class="col-sm-2 ml-auto">
+                            <a style="cursor: pointer; "><img style="width: 30px;
+                            height: 30px;
+                            margin-top: 5px;" src="./../../../assets//img/heart_black.svg" alt="teacher img">
+
+                            </a>
+                          </div> -->
+                        </div>
+                        <!-- <p style="text-align: right;">Bp</p> -->
+                        <span>Phonetic: {{item.pronunciations[0]?.phonetic || "null"}}</span>
                       </div>
-                      <div class="col-sm-2 mr-auto">
+                    </div>
+                  </div>
 
-                        <a style="cursor: pointer; "><img style="width: 30px;
-                          height: 30px;
-                          margin-top: 5px;" src="./../../../assets//img//slider//speaker1.svg" alt="teacher img">
 
-                        </a>
-                        <!-- <h4 style="text-align: right;">Loa</h4> -->
-                      </div>
-                      <div class="col-sm-2 ml-auto">
-                        <a style="cursor: pointer; "><img style="width: 30px;
-                        height: 30px;
-                        margin-top: 5px;" src="./../../../assets//img/heart_black.svg" alt="teacher img">
-
-                        </a>
-                      </div>
-                    </div>
-                    <!-- <p style="text-align: right;">Bp</p> -->
-                    <span>Math Teacher</span>
-                    <p>Lorem ipsum dolor .</p>
-                  </div>
-                </div>
-              </div>
-              <div class="col-lg-3 col-md-3  col-sm-6">
-                <div class="flip-card">
-                  <div class="flip-card-inner">
-                    <div class="flip-card-front">
-                      <img src="assets/img/teachers/teacher-01.png" alt="Avatar" style="width:260px;height:265px;">
-                    </div>
-                    <div class="flip-card-back">
-                      <h1>John Doe</h1>
-                      <p>Architect & Engineer</p>
-                      <p>We love that guy</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col-lg-3 col-md-3  col-sm-6">
-
-                <div class="mu-our-teacher-single">
-                  <figure class="mu-our-teacher-img">
-                    <img src="assets/img/teachers/teacher-01.png" alt="teacher img">
-                    <div class="mu-our-teacher-social">
-                      <a href="#"><span class="fa fa-facebook"></span></a>
-                      <a href="#"><span class="fa fa-twitter"></span></a>
-                      <a href="#"><span class="fa fa-linkedin"></span></a>
-                      <a href="#"><span class="fa fa-google-plus"></span></a>
-                    </div>
-                  </figure>
-                  <!-- </div> -->
-                  <!-- <div class="mu-our-teacher-single"> -->
-                  <div class="mu-ourteacher-single-content">
-                    <h4>Brian Dean</h4>
-                    <span>Math Teacher</span>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique quod pariatur recusandae odio
-                      dignissimos. Eligendi.</p>
-                  </div>
-                </div>
-              </div>
-              <div class="col-lg-3 col-md-3  col-sm-6">
-                <div class="mu-our-teacher-single">
-                  <figure class="mu-our-teacher-img">
-                    <img src="assets/img/teachers/teacher-01.png" alt="teacher img">
-                    <div class="mu-our-teacher-social">
-                      <a href="#"><span class="fa fa-facebook"></span></a>
-                      <a href="#"><span class="fa fa-twitter"></span></a>
-                      <a href="#"><span class="fa fa-linkedin"></span></a>
-                      <a href="#"><span class="fa fa-google-plus"></span></a>
-                    </div>
-                  </figure>
-                  <div class="mu-ourteacher-single-content">
-                    <h4>Brian Dean</h4>
-                    <span>Math Teacher</span>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique quod pariatur recusandae odio
-                      dignissimos. Eligendi.</p>
-                  </div>
-                </div>
-              </div>
-              <div class="col-lg-3 col-md-3  col-sm-6">
-                <div class="mu-our-teacher-single">
-                  <figure class="mu-our-teacher-img">
-                    <img src="assets/img/teachers/teacher-01.png" alt="teacher img">
-                    <div class="mu-our-teacher-social">
-                      <a href="#"><span class="fa fa-facebook"></span></a>
-                      <a href="#"><span class="fa fa-twitter"></span></a>
-                      <a href="#"><span class="fa fa-linkedin"></span></a>
-                      <a href="#"><span class="fa fa-google-plus"></span></a>
-                    </div>
-                  </figure>
-                  <div class="mu-ourteacher-single-content">
-                    <h4>Brian Dean</h4>
-                    <span>Math Teacher</span>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique quod pariatur recusandae odio
-                      dignissimos. Eligendi.</p>
-                  </div>
-                </div>
-              </div>
-              <div class="col-lg-3 col-md-3  col-sm-6">
-                <div class="mu-our-teacher-single">
-                  <figure class="mu-our-teacher-img">
-                    <img src="assets/img/teachers/teacher-01.png" alt="teacher img">
-                    <div class="mu-our-teacher-social">
-                      <a href="#"><span class="fa fa-facebook"></span></a>
-                      <a href="#"><span class="fa fa-twitter"></span></a>
-                      <a href="#"><span class="fa fa-linkedin"></span></a>
-                      <a href="#"><span class="fa fa-google-plus"></span></a>
-                    </div>
-                  </figure>
-                  <div class="mu-ourteacher-single-content">
-                    <h4>Brian Dean</h4>
-                    <span>Math Teacher</span>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique quod pariatur recusandae odio
-                      dignissimos. Eligendi.</p>
-                  </div>
-                </div>
-              </div>
-              <div class="col-lg-3 col-md-3 col-sm-6">
-                <div class="mu-our-teacher-single">
-                  <figure class="mu-our-teacher-img">
-                    <img src="assets/img/teachers/teacher-02.png" alt="teacher img">
-                    <div class="mu-our-teacher-social">
-                      <a href="#"><span class="fa fa-facebook"></span></a>
-                      <a href="#"><span class="fa fa-twitter"></span></a>
-                      <a href="#"><span class="fa fa-linkedin"></span></a>
-                      <a href="#"><span class="fa fa-google-plus"></span></a>
-                    </div>
-                  </figure>
-                  <div class="mu-ourteacher-single-content">
-                    <h4>James Hein</h4>
-                    <span>Physics Teacher</span>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique quod pariatur recusandae odio
-                      dignissimos. Eligendi.</p>
-                  </div>
-                </div>
-              </div>
-              <div class="col-lg-3 col-md-3 col-sm-6">
-                <div class="mu-our-teacher-single">
-                  <figure class="mu-our-teacher-img">
-                    <img src="assets/img/teachers/teacher-03.png" alt="teacher img">
-                    <div class="mu-our-teacher-social">
-                      <a href="#"><span class="fa fa-facebook"></span></a>
-                      <a href="#"><span class="fa fa-twitter"></span></a>
-                      <a href="#"><span class="fa fa-linkedin"></span></a>
-                      <a href="#"><span class="fa fa-google-plus"></span></a>
-                    </div>
-                  </figure>
-                  <div class="mu-ourteacher-single-content">
-                    <h4>Rebeca Michel</h4>
-                    <span>English Teacher</span>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique quod pariatur recusandae odio
-                      dignissimos. Eligendi.</p>
-                  </div>
-                </div>
-              </div>
-              <div class="col-lg-3 col-md-3 col-sm-6">
-                <div class="mu-our-teacher-single">
-                  <figure class="mu-our-teacher-img">
-                    <img src="assets/img/teachers/teacher-04.png" alt="teacher img">
-                    <div class="mu-our-teacher-social">
-                      <a href="#"><span class="fa fa-facebook"></span></a>
-                      <a href="#"><span class="fa fa-twitter"></span></a>
-                      <a href="#"><span class="fa fa-linkedin"></span></a>
-                      <a href="#"><span class="fa fa-google-plus"></span></a>
-                    </div>
-                  </figure>
-                  <div class="mu-ourteacher-single-content">
-                    <h4>John Doe</h4>
-                    <span>Biology Teacher</span>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique quod pariatur recusandae odio
-                      dignissimos. Eligendi.</p>
-                  </div>
-                </div>
-              </div>
             </div>
           </div>
           <!-- End our teacher content -->

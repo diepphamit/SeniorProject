@@ -1,4 +1,4 @@
-<div class="container">
+<!-- <div class="container">
   <form (submit)="addTest()">
     <ul *ngFor="let item of dataTest; index as i;">
       <p>Q.{{i +1}} What is mean of {{item.word}}</p>
@@ -18,9 +18,55 @@
         <input type="radio" [checked]="item.myAnswer == item.answer4" name="{{item.flashcardId}}"
           (click)="addMyAnswer(item.flashcardId, item.answer4)" />{{item.answer4Meaning}}
       </li>
-      <!-- <p>Answer: {{item.flashcardId}}</p> -->
     </ul>
     <p *ngIf="score != -1">{{score}}</p>
     <input type="submit" value="Submit" />
   </form>
+</div> -->
+
+
+<div class="container">
+  <div id="quiz">
+    <h1 id="quiz-name" style="text-align: center;">Quiz</h1>
+
+    <div id="question">
+      <form (submit)="addTest()">
+        <div *ngFor="let item of dataTest; index as i;">
+          <h2>Q.{{i +1}} What does the word "{{item.word | titlecase}}" mean?</h2>
+          <input id="{{i}}1" type="radio" [checked]="item.myAnswer == item.answer1" name="{{item.flashcardId}}"
+            (click)="addMyAnswer(item.flashcardId, item.answer1)">
+          <label  for="{{i}}1">{{item.answer1Meaning | titlecase}} </label>
+
+          <input id="{{i}}2" type="radio" [checked]="item.myAnswer == item.answer2" name="{{item.flashcardId}}"
+            (click)="addMyAnswer(item.flashcardId, item.answer3)">
+          <label  for="{{i}}2">{{item.answer2Meaning | titlecase}}</label>
+
+          <input id="{{i}}3" type="radio" [checked]="item.myAnswer == item.answer3" name="{{item.flashcardId}}"
+            (click)="addMyAnswer(item.flashcardId, item.answer3)">
+          <label for="{{i}}3">{{item.answer3Meaning | titlecase}}</label>
+
+          <input id="{{i}}4" type="radio" [checked]="item.myAnswer == item.answer4" name="{{item.flashcardId}}"
+            (click)="addMyAnswer(item.flashcardId, item.answer4)">
+          <label for="{{i}}4">{{item.answer4Meaning | titlecase}}</label>
+
+          <p style="padding-bottom: 50px;"></p>
+        </div>
+        <input *ngIf="score == -1" id="submit-button" type="submit" value="Submit" />
+      </form>
+      <p *ngIf="score != -1" id="quiz-results-message">You did alright.</p>
+      <p *ngIf="score != -1" id="quiz-results-score">You got <b>{{score}}</b> points.</p>
+    </div>
+
+    <!-- <button id="submit-button">Submit Answers</button> -->
+    <!-- <button id="next-question-button">Next Question</button>
+  <button id="prev-question-button" disabled="">Previous</button> -->
+
+    <!-- <div id="quiz-results" style="display: flex;">
+
+    <p id="quiz-results-message">You did alright.</p>
+    <p id="quiz-results-score">You got <b>3/4</b> questions correct.</p>
+    <button id="quiz-retry-button">Retry</button>
+
+  </div> -->
+  </div>
 </div>

@@ -13,6 +13,7 @@ export class HomeComponent implements OnInit {
   topicsAsync: Observable<any[]>;
   flashcardsAsync: Observable<any[]>;
   falshcardHome: Observable<any>;
+  popularFalshcards: any[];
 
   constructor(
     private topicService: TopicService,
@@ -23,6 +24,7 @@ export class HomeComponent implements OnInit {
     this.getAllFlashcard();
     this.getAllTopic();
     this.getFlashcardHome();
+    this.getPopularFlashcards();
   }
 
   getAllTopic() {
@@ -39,8 +41,20 @@ export class HomeComponent implements OnInit {
     );
   }
 
+  getPopularFlashcards() {
+    this.flashcardService.getPopularFlashcards().subscribe(data => {
+      this.popularFalshcards = data;
+    });
+  }
+
   getFlashcardHome() {
     this.flashcardService.getFlashcardHome().subscribe(data => this.falshcardHome = data);
+  }
+
+  playAudio(link) {
+    const audio = new Audio(link);
+    audio.load();
+    audio.play();
   }
 
 }
