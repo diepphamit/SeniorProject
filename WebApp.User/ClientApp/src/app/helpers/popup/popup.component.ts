@@ -1,5 +1,7 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { CURRENT_USER } from 'src/app/constants/db-keys';
 import { ChatbotService } from 'src/app/services/chatbot.service';
+import { FlashcardForCreateByChatbot } from './Dto/flashcardForCreateByChatbot.model';
 
 declare const $: any;
 
@@ -15,7 +17,7 @@ export class PopupComponent implements AfterViewInit {
   ) { }
   str: string;
   arr = [
-    // { key: true, value: 'awesadfdsfdsfadsfbc' },
+    //{ key: 2, value: 'http://res.cloudinary.com/djmeq19id/image/upload/v1606580905/s9clzx7fwa6alf0qpxki.jpg' },
     // { key: true, value: 'adsfadsfd' },
     // { key: false, value: 'aqwsafdsfdsfdsec' },
     // { key: false, value: 'asafdsfdsfdsfdbc' },
@@ -45,36 +47,65 @@ export class PopupComponent implements AfterViewInit {
 
   onKeypressEvent(value) {
     if (value.code === 'Enter' && this.str.trim() !== '') {
-      this.arr.push({ key: true, value: this.str });
+      this.arr.push({ key: 0, value: this.str });
       const dataRequest = { data: this.str };
       this.str = '';
-      this.chatbotService.createChatbot(dataRequest).subscribe(dataResponse => {
-        if (dataResponse['response'] === null) {
-          this.arr.push({ key: false, value: 'Sorry! I cannot understand what you say!' });
-        } else {
-          this.arr.push({ key: false, value: dataResponse['response'] });
-        }
-      });
+      if (dataRequest.data.includes('make a flashcard') || dataRequest.data.includes('make flashcard') || dataRequest.data.includes('create a flashcard') || dataRequest.data.includes('create flashcard')) {
 
-      $('.chat-body').animate({ scrollTop: $('.chat-body')[0].scrollHeight }, 500);
+        const flashcard = new FlashcardForCreateByChatbot(dataRequest.data.split('"', 2)[1], Number(this.getuserId));
+        this.chatbotService.createFlashcardByChatbot(flashcard).subscribe(data => {
+          this.arr.push({ key: 1, value: 'Made successfully, You can check in "My flashcard"' });
+          $('.chat-body').animate({ scrollTop: $('.chat-body')[0].scrollHeight }, 500);
+        });
+      } else {
+        this.chatbotService.createChatbot(dataRequest).subscribe(dataResponse => {
+          if (dataResponse['response'] === null) {
+            this.arr.push({ key: 1, value: 'Sorry! I cannot understand what you say!' });
+          } else if (dataResponse['response'].includes('http')) {
+            this.arr.push({ key: 2, value: dataResponse['response'] });
+          } else {
+            this.arr.push({ key: 1, value: dataResponse['response'] });
+          }
+          $('.chat-body').animate({ scrollTop: $('.chat-body')[0].scrollHeight }, 500);
+        });
+      }
     }
+
   }
   send() {
     if (this.str.trim() !== '') {
-      this.arr.push({ key: true, value: this.str });
+      this.arr.push({ key: 0, value: this.str });
       const dataRequest = { data: this.str };
       this.str = '';
-      this.chatbotService.createChatbot(dataRequest).subscribe(dataResponse => {
-        if (dataResponse['response'] === null) {
-          this.arr.push({ key: false, value: 'Sorry! I cannot understand what you say!' });
-        } else {
-          this.arr.push({ key: false, value: dataResponse['response'] });
-        }
-      });
+      if (dataRequest.data.includes('make a flashcard') || dataRequest.data.includes('make flashcard') || dataRequest.data.includes('create a flashcard') || dataRequest.data.includes('create flashcard')) {
 
-      $('.chat-body').animate({ scrollTop: $('.chat-body')[0].scrollHeight }, 500);
+        const flashcard = new FlashcardForCreateByChatbot(dataRequest.data.split('"', 2)[1], Number(this.getuserId));
+        this.chatbotService.createFlashcardByChatbot(flashcard).subscribe(data => {
+          this.arr.push({ key: 1, value: 'Made successfully, You can check in "My flashcard"' });
+          $('.chat-body').animate({ scrollTop: $('.chat-body')[0].scrollHeight }, 500);
+        });
+      } else {
+        this.chatbotService.createChatbot(dataRequest).subscribe(dataResponse => {
+          if (dataResponse['response'] === null) {
+            this.arr.push({ key: 1, value: 'Sorry! I cannot understand what you say!' });
+          } else if (dataResponse['response'].includes('http')) {
+            this.arr.push({ key: 2, value: dataResponse['response'] });
+          } else {
+            this.arr.push({ key: 1, value: dataResponse['response'] });
+          }
+          $('.chat-body').animate({ scrollTop: $('.chat-body')[0].scrollHeight }, 500);
+        });
+      }
+
+
     }
 
+  }
+
+  get getuserId() {
+    const user = JSON.parse(localStorage.getItem(CURRENT_USER));
+
+    return user.id;
   }
 
 }

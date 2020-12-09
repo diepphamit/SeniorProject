@@ -7,17 +7,17 @@ EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/core/sdk:3.1-buster AS build
 WORKDIR /src
-COPY ["OcelotApigateway/OcelotApigateway.csproj", "OcelotApigateway/"]
-# COPY ["DataAccess/DataAccess.csproj", "DataAccess/"]
-RUN dotnet restore "OcelotApigateway/OcelotApigateway.csproj"
+COPY ["MainMicroservice/MainMicroservice.csproj", "MainMicroservice/"]
+COPY ["DataAccess/DataAccess.csproj", "DataAccess/"]
+RUN dotnet restore "MainMicroservice/MainMicroservice.csproj"
 COPY . .
-WORKDIR "/src/OcelotApigateway"
-RUN dotnet build "OcelotApigateway.csproj" -c Release -o /app/build
+WORKDIR "/src/MainMicroservice"
+RUN dotnet build "MainMicroservice.csproj" -c Release -o /app/build
 
 FROM build AS publish
-RUN dotnet publish "OcelotApigateway.csproj" -c Release -o /app/publish
+RUN dotnet publish "MainMicroservice.csproj" -c Release -o /app/publish
 
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "OcelotApigateway.dll"]
+ENTRYPOINT ["dotnet", "MainMicroservice.dll"]

@@ -126,6 +126,57 @@ namespace MainMicroservice.Implementions
             }
         }
 
+        public async Task<bool> CreateFlashcardByChatbotAsync(FlashcardCreateByChatbotDB flashcardForCreate, int userId)
+        {
+            try
+            {
+                var flashcard = _mapper.Map<Flashcard>(flashcardForCreate);
+                flashcard.TopicId = 1;
+                flashcard.IsSystem = false;
+
+                _context.Flashcards.Add(flashcard);
+
+                var user = await _context.Users.FirstOrDefaultAsync(x => x.Id == userId);
+                if (user != null)
+                {
+                    UserFlashcard userFlashcard = new UserFlashcard
+                    {
+                        User = user,
+                        Flashcard = flashcard
+                    };
+
+                    _context.UserFlashcards.Add(userFlashcard);
+                }
+
+
+                Pronunciation pronunciation = new Pronunciation
+                {
+                    Link = flashcardForCreate.PronunciationLink,
+                    Phonetic = flashcardForCreate.Phonetic,
+                    Flashcard = flashcard
+
+                };
+
+                _context.Pronunciations.Add(pronunciation);
+
+                Image img = new Image
+                    {
+                        ImageUrl = flashcardForCreate.ImageUrl,
+                        Flashcard = flashcard
+                    };
+
+                _context.Images.Add(img);
+              
+                await _context.SaveChangesAsync();
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+
         public async Task<bool> CreateFlashcardByUserIdAsync(FlashcardForCreateByUserId flashcardForCreate, int userId)
         {
             try

@@ -13,4 +13,8 @@ export class ChatbotService {
   createChatbot(chatbot: any) {
     return this.http.post('http://localhost:5002/api/chatbot', chatbot);
   }
+
+  createFlashcardByChatbot(flashcardForCreateDB: any) {
+    return this.http.post('http://localhost:5002/api/Flashcard/CreateFlashcardByChatBot', flashcardForCreateDB);
+  }
 }

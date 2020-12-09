@@ -1,0 +1,10 @@
+C:\Users\DAVID-DIEP\source\repos\SeniorProject\DataAccess\bin\Release\netcoreapp3.1\DataAccess.deps.json
+C:\Users\DAVID-DIEP\source\repos\SeniorProject\DataAccess\bin\Release\netcoreapp3.1\DataAccess.runtimeconfig.json
+C:\Users\DAVID-DIEP\source\repos\SeniorProject\DataAccess\bin\Release\netcoreapp3.1\DataAccess.runtimeconfig.dev.json
+C:\Users\DAVID-DIEP\source\repos\SeniorProject\DataAccess\bin\Release\netcoreapp3.1\DataAccess.dll
+C:\Users\DAVID-DIEP\source\repos\SeniorProject\DataAccess\bin\Release\netcoreapp3.1\DataAccess.pdb
+C:\Users\DAVID-DIEP\source\repos\SeniorProject\DataAccess\obj\Release\netcoreapp3.1\DataAccess.csprojAssemblyReference.cache
+C:\Users\DAVID-DIEP\source\repos\SeniorProject\DataAccess\obj\Release\netcoreapp3.1\DataAccess.AssemblyInfoInputs.cache
+C:\Users\DAVID-DIEP\source\repos\SeniorProject\DataAccess\obj\Release\netcoreapp3.1\DataAccess.AssemblyInfo.cs
+C:\Users\DAVID-DIEP\source\repos\SeniorProject\DataAccess\obj\Release\netcoreapp3.1\DataAccess.dll
+C:\Users\DAVID-DIEP\source\repos\SeniorProject\DataAccess\obj\Release\netcoreapp3.1\DataAccess.pdb

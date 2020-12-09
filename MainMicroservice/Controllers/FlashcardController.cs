@@ -243,6 +243,55 @@ namespace MainMicroservice.Controllers
             return BadRequest(ModelState);
         }
 
+        [HttpPost("CreateFlashcardByChatBot")]
+        public async Task<IActionResult> CreateFlashcardByChatBot(FlashcardForCreateByChatbot flashcardForCreate)
+        {
+            if (ModelState.IsValid)
+            {
+
+                var json = JsonConvert.SerializeObject(flashcardForCreate);
+                var data = new StringContent(json, Encoding.UTF8, "application/json");
+
+                HttpClient client = new HttpClient();
+                HttpResponseMessage response = await client.PostAsync("http://ai-service/getflashcard", data);
+                //HttpResponseMessage response = await client.PostAsync("http://localhost:8000/image", content);
+                response.EnsureSuccessStatusCode();
+                var responseBody = await response.Content.ReadAsStringAsync();
+
+                var dataReturn = JObject.Parse(responseBody);
+                //var z = dataReturn.First.First[1];
+
+
+                FlashcardCreateByChatbotDB flashcard = new FlashcardCreateByChatbotDB
+                {
+                    Word = dataReturn.First.First[0].ToString(),
+                    Meaning = dataReturn.First.First[1].ToString(),
+                    Type = dataReturn.First.First[2].ToString(),
+                    Example = dataReturn.First.First[3].ToString(),
+                    Phonetic = dataReturn.First.First[4].ToString(),
+                    PronunciationLink = dataReturn.First.First[5].ToString(),
+                    ImageUrl = dataReturn.First.First[6].ToString()
+                };
+
+                var result = await _flashcardRepository.CreateFlashcardByChatbotAsync(flashcard, flashcardForCreate.UserId);
+                if (result)
+                {
+                    return Ok(new
+                    {
+                        message = "success",
+                        StatusCode = 201
+                    });
+                }
+
+                return BadRequest(new
+                {
+                    message = "fail"
+                });
+            }
+
+            return BadRequest(ModelState);
+        }
+
         [HttpPost("CreateFlashcardByUserId")]
         public async Task<IActionResult> CreateFlashcardByUserId([FromForm] FlashcardForCreateByUserId flashcardForCreate)
         {

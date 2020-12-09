@@ -7,8 +7,9 @@
       </div>
       <div class="chat-body">
         <div class="msg-insert" *ngFor="let item of arr">
-          <div class="msg-send" *ngIf="item.key"> {{item.value}} </div>
-          <div class="msg-receive" *ngIf="!item.key"> {{item.value}} </div>
+          <div class="msg-receive" *ngIf="item.key == 2"><img src="{{item.value}}" alt="Avatar" style="width:150px;height:150px;"></div>
+          <div class="msg-send" *ngIf="item.key == 0"> {{item.value}} </div>
+          <div class="msg-receive" *ngIf="item.key == 1"> {{item.value}} </div>
         </div>
         <div class="chat-text">
           <input type="text" placeholder="Send" [(ngModel)] = "str" (keypress)="onKeypressEvent($event)"/>

@@ -17,6 +17,7 @@ namespace MainMicroservice.Interfaces
         Task<Flashcard> GetFlashcardByIdAsync(int id);
         Task<bool> CreateFlashcardAsync(FlashcardForCreate flashcardForCreate);
         Task<bool> CreateFlashcardAIAsync(FlashcardForCreateAI flashcardForCreate, int userId);
+        Task<bool> CreateFlashcardByChatbotAsync(FlashcardCreateByChatbotDB flashcardForCreate, int userId);
         Task<bool> CreateFlashcardByUserIdAsync(FlashcardForCreateByUserId flashcardForCreate, int userId);
 
         Task<bool> UpdateFlashcardAsync(int id, FlashcardForUpdate flashcardForUpdate);
